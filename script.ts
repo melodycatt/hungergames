@@ -1,19 +1,30 @@
+// coloured console text
+import * as style from 'colors'
+
+//this whole thing is a hunger games sim
+//if you wanna run this download deno its the equiv of node.js
+
+//just stops some typescript errors
 interface PlayerStats {
     maxHealth: number
     health: any
     speed: number
     strength: number
     defense: number
-}
+};
 
+// the player or tribute class
 class Player {
+    // image and name for display
     img: string;
     name: string;
+    //stats and inv and stuff
     stats : PlayerStats;
     inv: Array<Item> = [];
     alliances: Array<Player> = [];
     hunger: number = 3;
 
+    //constructor ofc
     constructor (name : string, img : string) {
         this.name = name;
         this.img = img;
@@ -27,14 +38,34 @@ class Player {
         this.stats.health = this.stats.maxHealth;
     }
 
+    //this is where the problem is happening.
+    //if youve ever seen the brantsteele.net simulator its kinda like that. theres just a set of events that can happen between people like "person kills person"
+    //this method starts those events
     event() {
-
+        //initialises a random event/action from preset ones ive made (go to the Action class definition for context ig??)
+        let actionReal : Action = eval(randomProperty(Presets.Actions))
+        //makes sure that the amount of players needed for the chosen action is not greater than the amount of players left that are eligible to be part of an action
+        while (actionReal.playersNeeded > playersLeftInRound.length) {
+            actionReal = eval(randomProperty(Presets.Actions))
+        }
+        
+        //adds this to the action's list of players invoved
+        actionReal.players = [this]
+        //removes this from the list of players eligible for actions
+        playersLeftInRound.splice(playersLeftInRound.indexOf(this), 1)
+        //adds a random other player (and removes that random player from the list) to the list of involved players to fulfill the amount of players needed for the action 
+        for (let i = 0; i < actionReal.playersNeeded - 1; i++) {
+            actionReal.players.push(playersLeftInRound.splice(Math.round(Math.random() * playersLeftInRound.length - 1), 1)[0])
+        }
+        //does all the things the action does just go to the action declaration
+        actionReal.run()
     }
-
+    // removes this from the alive players. tbh dont know why this is a function when its 1 line
     kill() {
-
+        playersAlive.splice(playersAlive.indexOf(this), 1);
     }
 
+    //hunger stuff. it is the *hunger* games after all
     handleHunger () {
         if (this.hunger == 0) {
             this.stats.health -= 15;
@@ -42,6 +73,7 @@ class Player {
     }
 }
 
+//item stuff tbh just ignore all this
 class Item {
     name : string;
     count : number;
@@ -71,14 +103,22 @@ class Food extends Item {
     }
 }
 
+//Action class declaration
 class Action {
+    //display
     text : string;
+    //players needed for the action
     playersNeeded : number;
-    players : Array<Player> | undefined = undefined;
+    //players involved
+    players : Array<Player> = [];
+    //if the action kills people
     lethal : boolean;
+    //item stuff
     itemNeeded : [Item, number];
     itemGained : [Item, number];
     itemLost : [Item, number];
+
+    //constructor stuff
     constructor(text : string, playersNeeded : number, lethal : boolean, itemNeeded : [Item, number] | string, itemGained : [Item, number] | string, itemLost : [Item, number] | string) {
         this.text = text;
         this.playersNeeded = playersNeeded;
@@ -100,13 +140,19 @@ class Action {
         }
     }
 
-    run (players : Array<Player>) {
-        this.players = players;
-        if (this.lethal == true) {
-            players.slice(1).forEach((player, index) => {
+    //does all the stuff the action does
+    run () {
+        //debug
+        console.log(style.red(eval(this.text)))
+
+        //if lethal, get rid of all the players except the first one, might make it so which players die is specified later
+        if (this.lethal) {
+            //slice returns a copy of a section of an array. this returns everything but the first and kills each of the plauyers
+            this.players.slice(1).forEach((player, index) => {
                 player.kill();
             });
         }
+        //item stuff
         if (this.itemGained[1] > 0) {
             this.players[this.itemGained[1]].inv.push(this.itemGained[0]);
         }
@@ -116,11 +162,11 @@ class Action {
     }
 }
 
-
-let Presets = {
+//presets of items and events
+let Presets : {[key:string]:any} = {
     Actions: {
-        kills: "new Action(\"this.players[0] + 'kills' + this.players[1]\", 2, true, '[Presets.Items.null, 0]', '[Presets.Items.null, 0]', '[Presets.Items.null, 0]')",
-        bread: "new Action(\"this.players[0] + 'gets a piece of bread.'\", 2, true, '[Presets.Items.null, 0]', '[Presets.Items.Food.Bread, 0]', '[Presets.Items.null, 0]')"
+        kills: "new Action(\"this.players[0].name + ' kills ' + this.players[1].name + '.'\", 2, true, '[Presets.Items.null, 0]', '[Presets.Items.null, 0]', '[Presets.Items.null, 0]')",
+        bread: "new Action(\"this.players[0].name + ' gets a piece of bread.'\", 1, false, '[Presets.Items.null, 0]', '[Presets.Items.Food.Bread, 0]', '[Presets.Items.null, 0]')"
     },
 
     Items: {
@@ -132,21 +178,33 @@ let Presets = {
         },
         null: new Item('', 0)
     }
-}
+};
 
-function ranIntInterval(min : number, max : number) { // min and max included 
+//returns random property from an object
+function randomProperty (obj : {[key:string]:any}) : string {
+    var keys = Object.keys(obj);
+    return obj[keys[keys.length * Math.random() << 0]];
+};
+
+//returns a random number between min and max -- not sure why this is a fiunction
+function ranIntInterval(min : number, max : number) : number {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
-console.log(Presets.Actions.kills);
-console.log(eval(Presets.Actions.bread));
 
-function init() {
-    let playersAlive : Player[] = [
-        new Player("Big Poo", 'unused'),
-        new Player("Izutsumi", 'unused'),
-        new Player("Hilber", 'unused'),
-        new Player("Liliaa", 'unused'),        
-    ];
-    let playersLeftInRound : Player[];
+//init players alive and stuff
+let playersAlive : Player[] = [
+    new Player("Big Poo", 'unused'),
+    new Player("Izutsumi", 'unused'),
+    new Player("Hilber", 'unused'),
+    new Player("Liliaa", 'unused'),        
+    new Player("Celestial", 'unused'),        
+];;
+let playersLeftInRound : Player[];
 
+//loop through the players and runs the event method on each
+function day () {
+    playersLeftInRound = playersAlive.slice();
+    for (let player of playersLeftInRound) {
+        player.event()
+    }
 }
