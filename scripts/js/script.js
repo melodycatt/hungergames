@@ -128,9 +128,9 @@ class Action {
     }
     generate() {
         this.container.className = 'actionContainer'
-        document.body.appendChild(this.container)
+        section.appendChild(this.container)
         for (let player of this.players) {
-            this.container.appendChild(player.img);
+            this.container.appendChild(player.img.cloneNode());
         }
         this.action.className = 'action';
         this.action.innerHTML = eval(this.text);
@@ -171,6 +171,7 @@ let playersAlive = [
 ];
 ;
 let playersLeftInRound;
+const section = document.getElementById('day')
 //loop through the players and runs the event method on each
 function day() {
     playersLeftInRound = playersAlive.slice();
