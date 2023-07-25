@@ -75,3 +75,5 @@ function inputs(elementNumber) {
     container.setAttribute('onclick', null);
     console.log(container);
 }
+
+console.log('test')
