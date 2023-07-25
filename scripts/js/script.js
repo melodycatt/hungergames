@@ -175,7 +175,11 @@ const section = document.getElementById('day')
 //loop through the players and runs the event method on each
 function day() {
     playersLeftInRound = playersAlive.slice();
-    for (let player of playersLeftInRound) {
-        player.event();
+    while (playersLeftInRound[0]) {
+        console.log(playersLeftInRound)
+        console.log(playersAlive, 'playersAlive')
+        playersLeftInRound[Math.round(Math.random() * (playersLeftInRound.length - 1))].event();
     }
+    console.log(playersLeftInRound)
+    console.log(playersAlive, 'playersAlive')
 }
