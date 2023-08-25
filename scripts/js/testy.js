@@ -1,18 +1,5 @@
-let a = [1,2,3,4,5,6,7,8]
-
-while (a[0]) {
-   console.log(a[0])
-   a.splice(0, 1)
+function useRegex(input) {
+   return input.match(/(?<=\[)[^\[\]]+?(?=\])/g);
 }
 
-/* 
-<- eg output: 
-   1
-   [ 5 ]
-   2
-   [ 2 ]
-   4
-   [ 3 ]
-   7a
-   [ 1 ]
-*/
+console.log(useRegex('[1] pee [aaaaa]'))

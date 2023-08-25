@@ -8,9 +8,11 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title></title>
-        <script src="scripts/js/script.js" defer></script>
+        <script type="module" src="scripts/js/hungerGamesScript/main.js" defer></script>
+        <script type="module" src="scripts/js/hungerGamesScript/players.js" defer></script>
         <script src="scripts/js/pages.js" defer></script>
         <script src="scripts/js/data.js" defer></script>
+        <script src="scripts/js/styles.js" defer></script>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="styles/style.css">
@@ -20,6 +22,13 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <section id="day" class="active">
+            <div id="navbarwrapper">
+                <div id="navbar">
+                    <div class="navicon"><a><div>pee</div></a></div>
+                    <div class="navicon"><a><div>pee</div></a></div>
+                    <div class="navicon"><a><div>pee</div></a></div>
+                </div>
+            </div>
             <button onclick="day()">oh my got!!!</button>
             <input type="file" style="display: none;" id="fileChooser" />
             <button onclick="changePage('data')">Edit Data</button>
