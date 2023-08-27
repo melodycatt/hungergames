@@ -119,7 +119,7 @@ let playersAlive = [
     new Player("Liliaa"),
     new Player("Celestial"),
 ];
-;
+console.log(playersAlive);
 let playersLeftInRound;
 const section = document.getElementById('day')
 //loop through the players and runs the event method on each
