@@ -122,6 +122,7 @@ let playersAlive = [
 console.log(playersAlive);
 let playersLeftInRound;
 const section = document.getElementById('day')
+console.log(section)
 //loop through the players and runs the event method on each
 function day() {
     playersLeftInRound = playersAlive.slice();
@@ -133,3 +134,4 @@ function day() {
     console.log(playersLeftInRound)
     console.log(playersAlive, 'playersAlive')
 }
+console.log(day)
