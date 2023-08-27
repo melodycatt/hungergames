@@ -1,3 +1,5 @@
+import {playersAlive} from './hungerGamesScript/main.js';
+
 const dataSection = document.getElementById('data')
 const playerData = document.getElementById('dataPlayerSection')
 
