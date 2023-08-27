@@ -1,4 +1,5 @@
 "use strict";
+import * as utils from "../utils"
 
 export class Player {
     //constructor ofc
@@ -14,11 +15,11 @@ export class Player {
         this.img.style.width = '100px';
         this.img.style.height = '100px';
         this.stats = {
-            maxHealth: ranIntInterval(80, 130),
+            maxHealth: utils.ranIntInterval(80, 130),
             health: null,
-            speed: ranIntInterval(8, 12),
-            strength: ranIntInterval(8, 12),
-            defense: ranIntInterval(8, 12)
+            speed: utils.ranIntInterval(8, 12),
+            strength: utils.ranIntInterval(8, 12),
+            defense: utils.ranIntInterval(8, 12)
         };
         this.stats.health = this.stats.maxHealth;
     }
@@ -26,10 +27,10 @@ export class Player {
     //this method starts those events
     event() {
         //initialises a random event/action from preset ones ive made (go to the Action class definition for context ig??)
-        let actionReal = eval(randomProperty(Presets.Actions));
+        let actionReal = eval(utils.randomProperty(Presets.Actions));
         //makes sure that the amount of players needed for the chosen action is not greater than the amount of players left that are eligible to be part of an action
         while (actionReal.playersNeeded > playersLeftInRound.length) {
-            actionReal = eval(randomProperty(Presets.Actions));
+            actionReal = eval(utils.randomProperty(Presets.Actions));
         }
         //adds this to the action's list of players invoved
         actionReal.players = [this];
