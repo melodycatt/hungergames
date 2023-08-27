@@ -112,7 +112,7 @@ let Presets = {
     }
 };
 //init players alive and stuff
-let playersAlive = [
+export let playersAlive = [
     new Player("Big Poo"),
     new Player("Izutsumi"),
     new Player("Hilber"),
@@ -124,7 +124,7 @@ let playersLeftInRound;
 const section = document.getElementById('day')
 console.log(section)
 //loop through the players and runs the event method on each
-function day() {
+export function day() {
     playersLeftInRound = playersAlive.slice();
     while (playersLeftInRound[0]) {
         console.log(playersLeftInRound)
