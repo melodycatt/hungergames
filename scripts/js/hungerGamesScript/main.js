@@ -1,7 +1,6 @@
 "use strict";
 
 import { Player } from "./players.js"
-import * as utils from "../utils.js";
 //this whole thing is a hunger games sim
 //if you wanna run this download deno its the equiv of node.js
 ;

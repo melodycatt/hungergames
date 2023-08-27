@@ -1,5 +1,5 @@
 "use strict";
-import * as utils from "../utils"
+import * as utils from "../utils.js"
 
 export class Player {
     //constructor ofc
