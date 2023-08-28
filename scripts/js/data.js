@@ -40,7 +40,6 @@ for (let player of playersAlive) {
     const img = player.img.cloneNode();
     container.id = 'dataInputContainer' + i.toString()
     container.className = 'dataPlayerContainer';
-    container.setAttribute('number', i.toString());
     container.addEventListener("click", container.eventListener = function() {
         console.log(this)
         inputs(this)
