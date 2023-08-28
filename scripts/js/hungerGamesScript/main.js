@@ -48,6 +48,7 @@ console.log(section)
 //loop through the players and runs the event method on each
 export function day() {
     for (let player in playersAlive) {
+        console.log(player)
         player.event()
     }
 }
