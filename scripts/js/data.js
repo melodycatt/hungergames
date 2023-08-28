@@ -40,6 +40,7 @@ for (let player of playersAlive) {
     const img = player.img.cloneNode();
     container.id = 'dataInputContainer' + i.toString()
     container.className = 'dataPlayerContainer';
+    container.setAttribute('number', i.toString());
     container.addEventListener("click", container.eventListener = function() {
         console.log(this)
         inputs(this)
@@ -66,7 +67,6 @@ function inputs(container) {
     btn.addEventListener("click", btn.eventListener = function() {
         getData(this.parentElement.getAttribute("number"))
     }.bind(btn))
-    btn.setAttribute('onclick', 'getData(' + container.getAttribute("number") + ')')
     imgInput.placeholder = imgPlaceholder;
     imgInput.id = 'imgInput' + container.getAttribute("number")
     imgInput.style.width = '92px';
