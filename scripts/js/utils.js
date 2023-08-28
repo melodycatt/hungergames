@@ -37,3 +37,5 @@ export let Presets = {
         kill: new items.Weapon('killer', 10000, 10000),
     }
 };
+
+console.log(eval('[Presets.Items.null, 0]'), "JKHADUGKS IM GONNA KILL MYSRLF:IFDHBJ HFIUSHFA JKFDGAJ ")
