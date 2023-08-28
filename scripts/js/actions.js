@@ -1,4 +1,4 @@
-import { Presets } from "../utils.js"
+import { Presets } from "./utils.js"
 
 export class Action {
     //constructor stuff
