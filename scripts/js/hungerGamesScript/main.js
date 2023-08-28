@@ -1,6 +1,7 @@
 "use strict";
 
 import { Player } from "./players.js"
+import { Presets } from "../utils.js"
 //this whole thing is a hunger games sim
 //if you wanna run this download deno its the equiv of node.js
 ;
@@ -86,31 +87,6 @@ class Action {
         this.container.appendChild(this.action);
     }
 }
-//presets of items and events
-let Presets = {
-    Actions: {
-        spearStab: "new Action(\"this.players[0].name + ' stabs ' + this.players[1].name + ' with a Spear.'\", 2, '[Presets.Items.null, 0]', '[Presets.Items.null, 0]', '[Presets.Items.Weapons.Spear, 1]')",
-        treeClimb: "new Action(\"this.players[0].name + ' tries to climb a tree, but falls out of it and dies.'\", 2, '[Presets.Items.null, 0]', '[Presets.Items.null, 0]', '[Presets.Items.kill, 2]')",
-        bread: "new Action(\"this.players[0].name + ' gets a piece of bread.'\", 1, '[Presets.Items.null, 0]', '[Presets.Items.Food.Bread, 0]', '[Presets.Items.null, 0]')"
-    },
-    Items: {
-        Weapons: {
-            Spear: new Weapon('Spear', 3, 45),
-            Dagger: new Weapon('Dagger', 1, 20),
-            Sword: new Weapon('Sword', 4, 55),
-            Bow: new Weapon('Bow', 1, 35),
-        },
-        Food: {
-            Bread: new Food('Bread', 1, 2),
-            Apple: new Food('Apple', 1, 1),
-            Steak: new Food('Steak', 1, 3),
-            Berries: new Food('Berries', 1, 1),
-            Nuts: new Food('Nuts', 1, 1),
-        },
-        null: new Item('', 0),
-        kill: new Weapon('killer', 10000, 10000),
-    }
-};
 //init players alive and stuff
 export let playersAlive = [
     new Player("Big Poo"),
