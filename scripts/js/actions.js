@@ -6,7 +6,6 @@ export class Action {
     action = document.createElement('div');
     container = document.createElement('div');
     constructor(text, playersNeeded, itemNeeded, itemGained, itemLost) {
-        console.log(text, playersNeeded, itemNeeded, itemGained, itemLost, "PWEAAAASASaSASAS")
         //players involved
         this.players = [];
         this.text = text;
@@ -42,7 +41,6 @@ export class Action {
             });
         }*/
         //item stuff
-        console.log(this)
         if (this.itemGained[1] > 0) {
             this.players[this.itemGained[1]].inv.push(this.itemGained[0]);
         }
@@ -53,7 +51,6 @@ export class Action {
     generate() {
         this.container.className = 'actionContainer'
         section.appendChild(this.container)
-        console.log(this.players)
         for (let player of this.players) {
             this.container.appendChild(player.img.cloneNode());
         }
@@ -63,4 +60,3 @@ export class Action {
     }
 }
 
-console.log(eval(Presets.Actions.treeClimb), Presets.Actions.treeClimb)

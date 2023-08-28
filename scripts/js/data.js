@@ -37,7 +37,10 @@ for (let player of playersAlive) {
     const img = player.img.cloneNode();
     container.id = 'dataInputContainer' + i.toString()
     container.className = 'dataPlayerContainer';
-    container.setAttribute('onclick', 'inputs(' + i.toString() + ')');
+    container.setAttribute('number', i.toString());
+    container.addEventListener("click", () => {
+        inputs(this)
+    })
     name.className = 'dataPlayerName';
     name.innerHTML = player.name;
     img.className = 'dataPlayerImg';
@@ -49,8 +52,7 @@ for (let player of playersAlive) {
     i++;
 }
 
-function inputs(elementNumber) {
-    let container = document.getElementById('dataInputContainer' + elementNumber.toString())
+function inputs(container) {
     let nameInput = container.querySelector('.dataPlayerName');
     let imgInput = document.createElement('input');
     let btn = document.createElement('button')
