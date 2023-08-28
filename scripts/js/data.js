@@ -61,9 +61,9 @@ function inputs(container) {
     container.style.transform = `scale(1.1)`;
     container.style.boxShadow = `0px 5px 15px 2px black`;
     btn.innerHTML = 'Save'
-    btn.setAttribute('onclick', 'getData(' + elementNumber + ')')
+    btn.setAttribute('onclick', 'getData(' + container.getAttribute("number") + ')')
     imgInput.placeholder = imgPlaceholder;
-    imgInput.id = 'imgInput' + elementNumber
+    imgInput.id = 'imgInput' + container.getAttribute("number")
     imgInput.style.width = '92px';
     imgInput.style.display = 'block';
     let namePlaceholder = nameInput.innerHTML;
@@ -71,7 +71,7 @@ function inputs(container) {
     nameInput = document.createElement('input');
     nameInput.placeholder = namePlaceholder;
     nameInput.value = namePlaceholder;
-    nameInput.id = 'nameInput' + elementNumber
+    nameInput.id = 'nameInput' + container.getAttribute("number")
     nameInput.style.width = '92px';
     nameInput.style.display = 'block';
     container.appendChild(nameInput);
