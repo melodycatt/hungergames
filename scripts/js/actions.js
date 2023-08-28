@@ -6,6 +6,7 @@ export class Action {
     action = document.createElement('div');
     container = document.createElement('div');
     constructor(text, playersNeeded, lethal, itemNeeded, itemGained, itemLost) {
+        console.log(text, playersNeeded, lethal, itemNeeded, itemGained, itemLost, "PWEAAAASASaSASAS")
         //players involved
         this.players = [];
         this.text = text;
@@ -23,7 +24,6 @@ export class Action {
         else {
             this.itemGained = itemGained;
         }
-        console.log(itemLost)
         if (typeof itemLost == 'string') {
             this.itemLost = eval(itemLost);
         }
@@ -64,4 +64,4 @@ export class Action {
     }
 }
 
-console.log(eval(Presets.Actions.treeClimb))
+console.log(eval(Presets.Actions.treeClimb), Presets.Actions.treeClimb)
