@@ -2,6 +2,7 @@
 import * as utils from "../utils.js"
 import * as items from "../items.js"
 import { Action } from "../actions.js"
+import { playersAlive } from "./main.js";
 
 export class Player {
     //constructor ofc
@@ -36,11 +37,9 @@ export class Player {
         }
         //adds this to the action's list of players invoved
         actionReal.players = [this];
-        //removes this from the list of players eligible for actions
-        playersLeftInRound.splice(playersLeftInRound.indexOf(this), 1);
         //adds a random other player (and removes that random player from the list) to the list of involved players to fulfill the amount of players needed for the action 
         for (let i = 0; i < actionReal.playersNeeded - 1; i++) {
-            actionReal.players.push(playersLeftInRound.splice(Math.round(Math.random() * playersLeftInRound.length - 1), 1)[0]);
+            actionReal.players.push(playersAlive[Math.round(Math.random() * playersLeftInRound.length - 1)]);
         }
         //does all the things the action does just go to the action declaration
         actionReal.run();

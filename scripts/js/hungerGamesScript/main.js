@@ -39,7 +39,6 @@ export let playersAlive = [
     new Player("Celestial"),
 ];
 console.log(playersAlive);
-let playersLeftInRound;
 const section = document.getElementById('day')
 const dayButton = document.getElementById('dayBtn')
 dayButton.addEventListener("mouseup", (e) => {
@@ -48,13 +47,8 @@ dayButton.addEventListener("mouseup", (e) => {
 console.log(section)
 //loop through the players and runs the event method on each
 export function day() {
-    playersLeftInRound = playersAlive.slice();
-    while (playersLeftInRound[0]) {
-        console.log(playersLeftInRound)
-        console.log(playersAlive, 'playersAlive')
-        playersLeftInRound[Math.round(Math.random() * (playersLeftInRound.length - 1))].event();
+    for (let player in playersAlive) {
+        player.event()
     }
-    console.log(playersLeftInRound)
-    console.log(playersAlive, 'playersAlive')
 }
 console.log(day)
