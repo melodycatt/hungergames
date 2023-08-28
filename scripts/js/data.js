@@ -38,10 +38,10 @@ for (let player of playersAlive) {
     container.id = 'dataInputContainer' + i.toString()
     container.className = 'dataPlayerContainer';
     container.setAttribute('number', i.toString());
-    container.addEventListener("click", () => {
+    container.addEventListener("click", function () {
         console.log(this)
         inputs(this)
-    })
+    }.bind(container))
     name.className = 'dataPlayerName';
     name.innerHTML = player.name;
     img.className = 'dataPlayerImg';
