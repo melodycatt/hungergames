@@ -4,6 +4,8 @@ import * as items from "../items.js"
 import { Action } from "../actions.js"
 import { playersAlive } from "./main.js";
 
+const section = document.getElementById('day')
+
 export class Player {
     //constructor ofc
     constructor(name, img) {

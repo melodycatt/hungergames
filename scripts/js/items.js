@@ -1,3 +1,5 @@
+const section = document.getElementById('day')
+
 export class Item {
     constructor(name, count, customTags) {
         this.name = name;

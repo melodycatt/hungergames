@@ -1,5 +1,7 @@
 import { Presets } from "./utils.js"
 
+const section = document.getElementById('day')
+
 export class Action {
     //constructor stuff
     action = document.createElement('div');
