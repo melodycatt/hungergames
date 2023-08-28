@@ -11,7 +11,6 @@ export class Action {
         this.players = [];
         this.text = text;
         this.playersNeeded = playersNeeded;
-        this.lethal = lethal;
         if (typeof itemNeeded == 'string') {
             this.itemNeeded = eval(itemNeeded);
         }
@@ -36,12 +35,12 @@ export class Action {
         //debug
         this.generate();
         //if lethal, get rid of all the players except the first one, might make it so which players die is specified later
-        if (this.lethal) {
+        /*if (this.lethal) {
             //slice returns a copy of a section of an array. this returns everything but the first and kills each of the plauyers
             this.players.slice(1).forEach((player, index) => {
                 player.kill();
             });
-        }
+        }*/
         //item stuff
         console.log(this)
         if (this.itemGained[1] > 0) {
