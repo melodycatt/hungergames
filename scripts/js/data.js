@@ -39,6 +39,7 @@ for (let player of playersAlive) {
     container.className = 'dataPlayerContainer';
     container.setAttribute('number', i.toString());
     container.addEventListener("click", () => {
+        console.log(this)
         inputs(this)
     })
     name.className = 'dataPlayerName';
