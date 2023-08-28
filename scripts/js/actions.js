@@ -1,5 +1,7 @@
 import { Presets } from "./utils.js"
 
+console.log(eval(Presets.Actions.treeClimb))
+
 const section = document.getElementById('day')
 
 export class Action {
