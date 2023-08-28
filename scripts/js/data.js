@@ -64,6 +64,9 @@ function inputs(container) {
     container.style.transform = `scale(1.1)`;
     container.style.boxShadow = `0px 5px 15px 2px black`;
     btn.innerHTML = 'Save'
+    btn.addEventListener("click", btn.eventListener = function() {
+        getData(this.parentElement.getAttribute("number"))
+    }.bind(btn))
     btn.setAttribute('onclick', 'getData(' + container.getAttribute("number") + ')')
     imgInput.placeholder = imgPlaceholder;
     imgInput.id = 'imgInput' + container.getAttribute("number")
