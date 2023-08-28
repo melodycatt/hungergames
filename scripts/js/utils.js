@@ -1,6 +1,6 @@
 "use strict";
 
-import * as items from "./item.js"
+import * as items from "./items.js"
 //returns random property from an object
 export function randomProperty(obj) {
     var keys = Object.keys(obj);
