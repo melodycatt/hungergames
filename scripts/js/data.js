@@ -26,7 +26,7 @@ function getData (i) {
     pContainer.removeChild(pContainer.querySelector('button'));
     pContainer.style.transform = null;
     pContainer.style.boxShadow = null;
-    setTimeout(() => { pContainer.addEventListener("click", function gD() {
+    setTimeout(() => { pContainer.addEventListener("click", pContainer.eventListener = function() {
         console.log(this)
         inputs(this)
     }.bind(pContainer))}, 1)
@@ -41,7 +41,7 @@ for (let player of playersAlive) {
     container.id = 'dataInputContainer' + i.toString()
     container.className = 'dataPlayerContainer';
     container.setAttribute('number', i.toString());
-    container.addEventListener("click", function gD() {
+    container.addEventListener("click", container.eventListener = function() {
         console.log(this)
         inputs(this)
     }.bind(container))
@@ -80,6 +80,6 @@ function inputs(container) {
     container.appendChild(nameInput);
     container.appendChild(imgInput);
     container.appendChild(btn);
-    container.removeEventListener("click", gD)
+    container.removeEventListener("click", container.eventListener)
     console.log(container);
 }
