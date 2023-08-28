@@ -122,6 +122,10 @@ export let playersAlive = [
 console.log(playersAlive);
 let playersLeftInRound;
 const section = document.getElementById('day')
+const dayButton = document.getElementById('dayBtn')
+dayButton.addEventListener("mouseup", (e) => {
+    day()
+})
 console.log(section)
 //loop through the players and runs the event method on each
 export function day() {
