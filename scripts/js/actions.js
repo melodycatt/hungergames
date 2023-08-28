@@ -44,6 +44,7 @@ export class Action {
             });
         }
         //item stuff
+        console.log(this)
         if (this.itemGained[1] > 0) {
             this.players[this.itemGained[1]].inv.push(this.itemGained[0]);
         }

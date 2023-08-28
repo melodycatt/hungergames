@@ -16,7 +16,7 @@ export function ranIntInterval(min, max) {
 export let Presets = {
     Actions: {
         spearStab: "new Action(\"this.players[0].name + ' stabs ' + this.players[1].name + ' with a Spear.'\", 2, '[Presets.Items.null, 0]', '[Presets.Items.null, 0]', '[Presets.Items.Weapons.Spear, 1]')",
-        treeClimb: "new Action(\"this.players[0].name + ' tries to climb a tree, but falls out of it and dies.'\", 2, '[Presets.Items.null, 0]', '[Presets.Items.null, 0]', '[Presets.Items.kill, 2]')",
+        treeClimb: "new Action(\"this.players[0].name + ' tries to climb a tree, but falls out of it and dies.'\", 1, '[Presets.Items.null, 0]', '[Presets.Items.null, 0]', '[Presets.Items.kill, 0]')",
         bread: "new Action(\"this.players[0].name + ' gets a piece of bread.'\", 1, '[Presets.Items.null, 0]', '[Presets.Items.Food.Bread, 0]', '[Presets.Items.null, 0]')"
     },
     Items: {
