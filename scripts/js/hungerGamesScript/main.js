@@ -2,6 +2,7 @@
 
 import { Player } from "./players.js"
 import { Presets } from "../utils.js"
+import * as items from "../items.js" 
 //this whole thing is a hunger games sim
 //if you wanna run this download deno its the equiv of node.js
 ;
