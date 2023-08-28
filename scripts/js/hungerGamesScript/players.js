@@ -1,6 +1,7 @@
 "use strict";
 import * as utils from "../utils.js"
 import * as items from "../items.js"
+import { Action } from "../actions.js"
 
 export class Player {
     //constructor ofc
