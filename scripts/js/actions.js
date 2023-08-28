@@ -25,6 +25,7 @@ export class Action {
             this.itemGained = itemGained;
         }
         if (typeof itemLost == 'string') {
+            console.log(itemLost)
             this.itemLost = eval(itemLost);
         }
         else {
