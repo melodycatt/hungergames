@@ -26,7 +26,10 @@ function getData (i) {
     pContainer.removeChild(pContainer.querySelector('button'));
     pContainer.style.transform = null;
     pContainer.style.boxShadow = null;
-    setTimeout(() => {pContainer.setAttribute('onclick', 'inputs(' + i.toString() + ')');}, 1)
+    setTimeout(() => { pContainer.addEventListener("click", function gD() {
+        console.log(this)
+        inputs(this)
+    }.bind(pContainer))}, 1)
 }
 
 
