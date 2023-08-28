@@ -1,7 +1,4 @@
 import { Presets } from "./utils.js"
-
-console.log(eval(Presets.Actions.treeClimb))
-
 const section = document.getElementById('day')
 
 export class Action {
@@ -66,3 +63,5 @@ export class Action {
         this.container.appendChild(this.action);
     }
 }
+
+console.log(eval(Presets.Actions.treeClimb))
