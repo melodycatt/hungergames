@@ -32,7 +32,9 @@ export class Player {
     //this method starts those events
     event() {
         //initialises a random event/action from preset ones ive made (go to the Action class definition for context ig??)
-        let actionReal = eval(utils.randomProperty(utils.Presets.Actions));
+        let actionReal = utils.randomProperty(utils.Presets.Actions);
+        console.log(actionReal)
+        actionReal = eval(actionReal)
         //makes sure that the amount of players needed for the chosen action is not greater than the amount of players left that are eligible to be part of an action
         while (actionReal.playersNeeded > playersAlive.length) {
             actionReal = eval(utils.randomProperty(utils.Presets.Actions));
