@@ -43,7 +43,7 @@ export class Player {
         actionReal.players = [this];
         //adds a random other player (and removes that random player from the list) to the list of involved players to fulfill the amount of players needed for the action 
         for (let i = 0; i < actionReal.playersNeeded - 1; i++) {
-            actionReal.players.push(playersAlive[Math.round(Math.random() * playersAlive.length - 1)]);
+            actionReal.players.push(playersAlive[Math.round(Math.random() * (playersAlive.length - 1))]);
         }
         //does all the things the action does just go to the action declaration
         actionReal.run();
