@@ -38,7 +38,7 @@ for (let player of playersAlive) {
     container.id = 'dataInputContainer' + i.toString()
     container.className = 'dataPlayerContainer';
     container.setAttribute('number', i.toString());
-    container.addEventListener("click", function () {
+    container.addEventListener("click", function gD() {
         console.log(this)
         inputs(this)
     }.bind(container))
@@ -77,6 +77,6 @@ function inputs(container) {
     container.appendChild(nameInput);
     container.appendChild(imgInput);
     container.appendChild(btn);
-    container.setAttribute('onclick', null);
+    container.removeEventListener("click", gD)
     console.log(container);
 }
