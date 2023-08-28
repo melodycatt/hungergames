@@ -5,7 +5,7 @@ export class Action {
     //constructor stuff
     action = document.createElement('div');
     container = document.createElement('div');
-    constructor(text, playersNeeded, lethal, itemNeeded, itemGained, itemLost) {
+    constructor(text, playersNeeded, itemNeeded, itemGained, itemLost) {
         console.log(text, playersNeeded, itemNeeded, itemGained, itemLost, "PWEAAAASASaSASAS")
         //players involved
         this.players = [];
