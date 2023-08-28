@@ -24,8 +24,8 @@ export class Action {
         else {
             this.itemGained = itemGained;
         }
+        console.log(itemLost)
         if (typeof itemLost == 'string') {
-            console.log(itemLost)
             this.itemLost = eval(itemLost);
         }
         else {
@@ -54,6 +54,7 @@ export class Action {
     generate() {
         this.container.className = 'actionContainer'
         section.appendChild(this.container)
+        console.log(this.players)
         for (let player of this.players) {
             this.container.appendChild(player.img.cloneNode());
         }
