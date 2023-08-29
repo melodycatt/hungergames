@@ -1,4 +1,4 @@
-import { range } from utils
+import { range } from './utils.js'
  
 const section = document.getElementById('day')
 
