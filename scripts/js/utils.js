@@ -15,8 +15,7 @@ export function ranIntInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-export function range(start, end, inclusive) {
-    let inclusive = inclusive || false
+export function range(start, end, inclusive = false) {
     let output = []
     if (inclusive) {
         for (let i = start; i < end + 1; i++) {
