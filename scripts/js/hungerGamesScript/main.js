@@ -6,29 +6,6 @@ import * as items from "../items.js"
 import { Action } from "../actions.js"
 //this whole thing is a hunger games sim
 //if you wanna run this download deno its the equiv of node.js
-;
-// the player or tribute class
-//item stuff tbh just ignore all this
-class Item {
-    constructor(name, count, customTags) {
-        this.name = name;
-        this.count = count;
-        this.customTags = customTags;
-    }
-}
-class Weapon extends Item {
-    constructor(name, count, durability, damage, customTags) {
-        super(name, count, customTags);
-        this.durability = durability;
-        this.damage = damage;
-    }
-}
-class Food extends Item {
-    constructor(name, count, hunger, customTags) {
-        super(name, count, customTags);
-        this.hunger = hunger;
-    }
-}
 //Action class declaration
 //init players alive and stuff
 export let playersAlive = [
@@ -36,20 +13,17 @@ export let playersAlive = [
     new Player("Izutsumi"),
     new Player("Hilber"),
     new Player("Liliaa"),
-    new Player("Celestial"),
+    new Player("Celestial", "https://images.newscientist.com/wp-content/uploads/2023/04/06160828/SEI_151092237.jpg?width=1200"),
+    new Player("Vevi", "https://media.discordapp.net/attachments/939571899279761521/1145839671167955054/Untitled691_20230828175727.png?width=1196&height=1196"),
 ];
-console.log(playersAlive);
 const section = document.getElementById('day')
 const dayButton = document.getElementById('dayBtn')
 dayButton.addEventListener("mouseup", (e) => {
     day()
 })
-console.log(section)
 //loop through the players and runs the event method on each
 export function day() {
     for (let player of playersAlive) {
-        console.log(player)
         player.event()
     }
 }
-console.log(day)

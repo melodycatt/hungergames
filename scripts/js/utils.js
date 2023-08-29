@@ -1,6 +1,9 @@
 "use strict";
 
 import * as items from "./items.js"
+import { Action } from "./actions.js";
+import { Player } from "./hungerGamesScript/players.js";
+import { playersAlive } from "./hungerGamesScript/main.js";
 //returns random property from an object
 export function randomProperty(obj) {
     var keys = Object.keys(obj);
@@ -12,13 +15,28 @@ export function ranIntInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+export function range(start, end, inclusive) {
+    let inclusive = inclusive || false
+    let output = []
+    if (inclusive) {
+        for (let i = start; i < end + 1; i++) {
+            output.push(i)
+        }        
+    } else {
+        for (let i = start; i < end; i++) {
+            output.push(i)
+        }        
+    }
+    return output
+}
+
 //presets of items and events
 export let Presets = {
-    Actions: {
-        spearStab: "new Action(\"this.players[0].name + ' stabs ' + this.players[1].name + ' with a Spear.'\", 2, '[Presets.Items.null, 0]', '[Presets.Items.null, 0]', '[Presets.Items.Weapons.Spear, 1]')",
-        treeClimb: "new Action(\"this.players[0].name + ' tries to climb a tree, but falls out of it and dies.'\", 1, '[Presets.Items.null, 0]', '[Presets.Items.null, 0]', '[Presets.Items.kill, 0]')",
-        bread: "new Action(\"this.players[0].name + ' gets a piece of bread.'\", 1, '[Presets.Items.null, 0]', '[Presets.Items.Food.Bread, 0]', '[Presets.Items.null, 0]')"
-    },
+    Actions: [
+        "new Action(\"this.players[0].name + ' stabs ' + this.players[1].name + ' with a Spear.'\", 2, '[Presets.Items.null, 0]', '[Presets.Items.null, 0]', '[Presets.Items.Weapons.Spear, 1]')",
+        "new Action(\"this.players[0].name + ' tries to climb a tree, but falls out of it and dies.'\", 1, '[Presets.Items.null, 0]', '[Presets.Items.null, 0]', '[Presets.Items.kill, 0]')",
+        "new Action(\"this.players[0].name + ' gets a piece of bread.'\", 1, '[Presets.Items.null, 0]', '[Presets.Items.Food.Bread, 0]', '[Presets.Items.null, 0]')"
+    ],
     Items: {
         Weapons: {
             Spear: new items.Weapon('Spear', 3, 45),
@@ -38,4 +56,39 @@ export let Presets = {
     }
 };
 
-console.log(eval('[Presets.Items.null, 0]'), "JKHADUGKS IM GONNA KILL MYSRLF:IFDHBJ HFIUSHFA JKFDGAJ ")
+/**
+ * Returns Viable Player Actions
+ * @param { Player } player 
+ * @returns {Array}
+ */
+export function viableActions(player) {
+    let output = []
+    for (let action of Presets.Actions) {
+        action = eval(action);
+        if (action.playersNeeded <= playersAlive.length) {
+            for ( let i of action.itemData) {
+                if (i.type == 'attack' || 'eat') {
+                    if (player.hasItem(i.itemInstances[0])) {
+                        output.push(action);
+                    }
+                } else if (i.type == 'craft') {
+                    let hasI = 0
+                    for (let a in i.itemInstances) {
+                        if (player.hasItem(i.itemInstances[a])) {
+                            hasI++; 
+                        }
+                    }
+                    if (hasI == i.itemInstances.length) {
+                        output.push(action)
+                    }
+                } else if (i.type == 'gain') {
+                    output.push(action)
+                }
+            }
+        } else {
+            continue;
+        }
+    }
+    return output
+}
+

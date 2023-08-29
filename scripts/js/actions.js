@@ -1,32 +1,19 @@
-import { Presets } from "./utils.js"
+import { Presets, viableActions } from "./utils.js"
+import * as items from "./items.js"
 const section = document.getElementById('day')
 
 export class Action {
     //constructor stuff
     action = document.createElement('div');
     container = document.createElement('div');
-    constructor(text, playersNeeded, itemNeeded, itemGained, itemLost) {
+    constructor(text, playersNeeded, itemData) {
         //players involved
         this.players = [];
         this.text = text;
         this.playersNeeded = playersNeeded;
-        if (typeof itemNeeded == 'string') {
-            this.itemNeeded = eval(itemNeeded);
-        }
-        else {
-            this.itemNeeded = itemNeeded;
-        }
-        if (typeof itemGained == 'string') {
-            this.itemGained = eval(itemGained);
-        }
-        else {
-            this.itemGained = itemGained;
-        }
-        if (typeof itemLost == 'string') {
-            this.itemLost = eval(itemLost);
-        }
-        else {
-            this.itemLost = itemLost;
+        this.itemData = itemData
+        for (let i in this.itemData) {
+            this.itemData[i] = eval(this.itemData[i]) 
         }
     }
     //does all the stuff the action does
@@ -41,12 +28,6 @@ export class Action {
             });
         }*/
         //item stuff
-        if (this.itemGained[1] > 0) {
-            this.players[this.itemGained[1]].inv.push(this.itemGained[0]);
-        }
-        if (this.itemLost[1] > 0) {
-            this.players[this.itemLost[1]].inv.push(this.itemLost[0]);
-        }
     }
     generate() {
         this.container.className = 'actionContainer'

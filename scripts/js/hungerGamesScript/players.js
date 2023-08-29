@@ -16,9 +16,9 @@ export class Player {
         this.img = document.createElement('img');
         this.img.className = 'player';
         this.img.src = img || 'default.jpg';
-        console.log(this.img)
         this.img.style.width = '100px';
         this.img.style.height = '100px';
+        this.img.style.objectFit = 'cover';
         this.stats = {
             maxHealth: utils.ranIntInterval(80, 130),
             health: null,
@@ -31,19 +31,20 @@ export class Player {
     //if youve ever seen the brantsteele.net simulator its kinda like that. theres just a set of events that can happen between people like "person kills person"
     //this method starts those events
     event() {
-        //initialises a random event/action from preset ones ive made (go to the Action class definition for context ig??)
-        let actionReal = utils.randomProperty(utils.Presets.Actions);
-        console.log(actionReal)
-        actionReal = eval(actionReal)
-        //makes sure that the amount of players needed for the chosen action is not greater than the amount of players left that are eligible to be part of an action
-        while (actionReal.playersNeeded > playersAlive.length) {
-            actionReal = eval(utils.randomProperty(utils.Presets.Actions));
+        let actionChance = 100;
+        let actionReal;
+        let viable = utils.viableActions();
+        if(Math.round(Math.random * 100) <= actionChance) {
+            actionReal = viable[Math.round(Math.random * (viable.length - 1))]
         }
         //adds this to the action's list of players invoved
         actionReal.players = [this];
         //adds a random other player (and removes that random player from the list) to the list of involved players to fulfill the amount of players needed for the action 
         for (let i = 0; i < actionReal.playersNeeded - 1; i++) {
-            actionReal.players.push(playersAlive[Math.round(Math.random() * (playersAlive.length - 1))]);
+            let tempPlayer = playersAlive[Math.round(Math.random() * (playersAlive.length - 1))];
+            if ( tempPlayer.viable(actionReal) ) {
+                actionReal.players.push(tempPlayer);
+            }
         }
         //does all the things the action does just go to the action declaration
         actionReal.run();
@@ -57,5 +58,38 @@ export class Player {
         if (this.hunger == 0) {
             this.stats.health -= 15;
         } 
+    }
+
+    viable(action) {
+        let output = false;
+        for ( let i of action.itemData) {
+            if (i.type == 'eat') {
+                if (this.hasItem(i.itemInstances[0])) {
+                    output = true;
+                }
+            } else if (i.type == 'craft') {
+                let hasI = 0
+                for (let a in i.itemInstances) {
+                    if (this.hasItem(i.itemInstances[a])) {
+                        hasI++; 
+                    }
+                }
+                if (hasI == i.itemInstances.length) {
+                    output = true
+                }
+            } else if (i.type == 'gain') {
+                output = true;
+            }
+        }
+        return output;
+    }
+
+    hasItem(item) {
+        for (let i of this.inv) {
+            if (i.name == item.name && i.customTags == item.customTags && i.count >= item.count) {
+                return true;
+            }
+        }
+        return false;
     }
 }

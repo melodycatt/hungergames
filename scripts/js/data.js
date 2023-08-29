@@ -7,7 +7,6 @@ function getData (i) {
     const nameInput = document.getElementById('nameInput' + i);
     const imgInput = document.getElementById('imgInput' + i);
     const pContainer = document.getElementById('dataInputContainer' + i)
-    console.log(imgInput.value)
     if (imgInput.value != '') {
         document.getElementById('dataPlayerImg' + i.toString()).src = imgInput.value;
         playersAlive[i].img.src = imgInput.value
@@ -27,7 +26,6 @@ function getData (i) {
     pContainer.style.transform = null;
     pContainer.style.boxShadow = null;
     setTimeout(() => { pContainer.addEventListener("click", pContainer.eventListener = function() {
-        console.log(this)
         inputs(this)
     }.bind(pContainer))}, 1)
 }
@@ -42,7 +40,6 @@ for (let player of playersAlive) {
     container.className = 'dataPlayerContainer';
     container.setAttribute('number', i.toString());
     container.addEventListener("click", container.eventListener = function() {
-        console.log(this)
         inputs(this)
     }.bind(container))
     name.className = 'dataPlayerName';
@@ -83,5 +80,4 @@ function inputs(container) {
     container.appendChild(imgInput);
     container.appendChild(btn);
     container.removeEventListener("click", container.eventListener)
-    console.log(container);
 }
