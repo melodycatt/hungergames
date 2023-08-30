@@ -35,7 +35,7 @@ export class Player {
         let viable = this.viableActions;
         console.log(4, viable)
         this.container.className = 'playerActionContainer'
-        this.container.appendChild(this.img.cloneNode())
+        this.container.appendChild(this.img.cloneNode(true))
         let tempElements = []
         tempElements.push(document.createElement('div'))
         tempElements[0].className = 'flexWrap'
@@ -46,7 +46,7 @@ export class Player {
             actionChance /= 3;
             actionChance = Math.round(actionChance)
         }
-        section.appendChild(this.container)
+        section.appendChild(this.container.cloneNode(true))
     }
     // removes this from the alive players. tbh dont know why this is a function when its 1 line
     kill() {

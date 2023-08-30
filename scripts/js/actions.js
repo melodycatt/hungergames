@@ -28,8 +28,10 @@ export class Action {
         this.itemData.run(owner)
         this.action.className = 'action';
         this.action.innerHTML = eval(this.text);
-        container.appendChild(this.action.cloneNode());
-        container.appendChild(this.itemData.effects.cloneNode())
+        console.log(this.action.innerHTML)
+        container.appendChild(this.action.cloneNode(true));
+        container.appendChild(this.itemData.effects.cloneNode(true))
+        console.log(this.action.innerHTML)
     }
     
     get viablePlayers() {
