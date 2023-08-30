@@ -46,6 +46,7 @@ export class Player {
             actionChance /= 3;
             actionChance = Math.round(actionChance)
         }
+        section.appendChild(this.container)
     }
     // removes this from the alive players. tbh dont know why this is a function when its 1 line
     kill() {

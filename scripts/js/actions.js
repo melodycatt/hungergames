@@ -35,11 +35,11 @@ export class Action {
     get viablePlayers() {
         let output = []
         for ( let player of playersAlive ) {
-            if (this.itemData.type == 'attack' || i.type == 'eat') {
+            if (this.itemData.type == 'attack' || this.itemData.type == 'eat') {
                 if (player.hasItem(this.itemData.itemInstances[0])) {
                     output.push(player)
                 }
-            } else if (i.type == 'craft') {
+            } else if (this.itemData.type == 'craft') {
                 let hasI = 0
                 for (let a of this.itemData.itemInstances) {
                     if (player.hasItem([a])) {
