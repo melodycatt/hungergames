@@ -50,7 +50,8 @@ export const PresetItems = {
 //presets of items and events
 export const PresetActions = [
     new Action("this.players[0].name + ' stabs ' + this.players[1].name + ' with a Spear.'", 2, [new items.ActionItemTemplate([PresetItems.Weapons.Spear], [1], "attack", {affectedPlayers: [1]})]),
-    new Action("this.players[0].name + ' tries to climb a tree, but falls out of it and dies.'", 2, [new items.ActionItemTemplate([PresetItems.Weapons.Spear], [1], "attack", {affectedPlayers: [1]})]),
-    new Action("this.players[0].name + ' gets a piece of bread.'", 2, [new items.ActionItemTemplate([PresetItems.Weapons.Spear], [1], "attack", {affectedPlayers: [1]})]),
+    new Action("this.players[0].name + ' tries to climb a tree, but falls out of it and dies.'", 1, [new items.ActionItemTemplate([PresetItems.null], [0], "none", {})]),
+    new Action("this.players[0].name + ' gets a piece of bread.'", 1, [new items.ActionItemTemplate([PresetItems.Food.Bread], [0], "gain", {})]),
+    new Action("this.players[0].name + ' pees.'", 2, [new items.ActionItemTemplate([PresetItems.null], [0], "none", {})]),
 ];
 

@@ -24,7 +24,7 @@ export class Food extends Item {
 }
 
 export class ActionItemTemplate {
-    static types = ["attack", "eat", "craft"]
+    static types = ["attack", "eat", "craft", "gain", "none"]
     effects;
     constructor (itemInstances, players, type, tags) {
         this.players = players
@@ -41,15 +41,6 @@ export class ActionItemTemplate {
         this.effectsExtra = document.createElement('div');
         this.effects.className = this.type + 'Effect';
         this.effectsExtra.className = this.type + 'EffectExtra';
-        if (this.type == "attack") {
-            this.effects.innerHTML = `-${this.itemInstances[0].damage} health ▼`
-            this.effectsExtra.innerHTML = ``
-            this.effects.appendChild()
-        } else if (this.type == "eat") {
-            this.effects.innerHTML = `-${this.itemInstances[0].damage} health ▼`
-        }
-
-
 
         if (this.type == "attack" && this.itemInstances[0] instanceof Weapon) {
             this.effects.innerHTML = `${this.itemInstances[0].damage} damage ▼`
@@ -64,14 +55,14 @@ export class ActionItemTemplate {
                     this.parent.players[player].kill();
                 }
             }
-            this.effects.appendChild()
+            this.effects.appendChild(this.effectsExtra)
         } else if (this.type = "eat") {
             this.effects.innerHTML = `+${this.itemInstances[0].hunger} hunger ▼`
             for (let player in this.players) {
                 this.effectsExtra.innerHTML = this.effectsExtra.innerHTML + `${this.parent.players[player].name} gains ${this.itemInstances[0].hunger} hunger.` + this.players.indexOf(player) < this.players.length - 1 ? '\n' : ''
                 this.parent.players[player].hunger -= this.itemInstances[0].hunger;
             }
-            this.effects.appendChild()
+            this.effects.appendChild(this.effectsExtra)
         } else if (this.type == "craft") {
             this.effects.innerHTML = `Crafting ▼`
             for (let i in range(0, this.tags.itemsLost - 1)) {
@@ -87,7 +78,14 @@ export class ActionItemTemplate {
                     this.parent.players[player].inv[item] = item;
                 }
             }
-            this.effects.appendChild()
+            this.effects.appendChild(this.effectsExtra)
+        } else if (this.type == "gain") {
+            this.effects.innerHTML = `+${this.itemInstances[0].count} ${this.itemInstances[0].count} ▼`
+            for (let player in this.players) {
+                this.effectsExtra.innerHTML = this.effectsExtra.innerHTML + `${this.parent.players[player].name} gains ${this.itemInstances[0].count} ${this.itemInstances[0].count}.` + this.players.indexOf(player) < this.players.length - 1 ? '\n' : ''
+                this.parent.players[player].inv.push(this.itemInstances[0]);
+            }
+            this.effects.appendChild(this.effectsExtra)
         }
     }
 }

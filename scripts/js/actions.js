@@ -60,7 +60,7 @@ export class Action {
                     if (hasI == i.itemInstances.length) {
                         add++
                     }
-                } else if (i.type == 'gain') {
+                } else {
                     add++
                 }
             }
