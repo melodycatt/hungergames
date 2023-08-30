@@ -82,7 +82,7 @@ export class ActionItemTemplate {
         } else if (this.type == "gain") {
             this.effects.innerHTML = `+${this.itemInstances[0].count} ${this.itemInstances[0].name} ▼`
             for (let player in this.players) {
-                this.effectsExtra.innerHTML = this.effectsExtra.innerHTML + `${this.parent.players[player].name} gains ${this.itemInstances[0].count} ${this.itemInstances[0].count}.` + player < this.players.length - 1 ? '\n' : ''
+                this.effectsExtra.innerHTML = this.effectsExtra.innerHTML + `${this.parent.players[player].name} gains ${this.itemInstances[0].count} ${this.itemInstances[0].name}.` + (player < this.players.length - 1 ? '\n' : '')
                 this.parent.players[player].inv.push(this.itemInstances[0]);
             }
             this.effects.appendChild(this.effectsExtra.cloneNode(true))
