@@ -6,6 +6,7 @@ const section = document.getElementById('day')
 
 export class Player {
     //constructor ofc
+    container = document.createElement('div');
     constructor(name, img) {
         this.inv = [];
         this.alliances = [];
@@ -33,10 +34,15 @@ export class Player {
         let actionReal;
         let viable = this.viableActions;
         console.log(4, viable)
+        this.container.className = 'playerActionContainer'
+        this.container.appendChild(this.img.cloneNode())
+        let tempElements = []
+        tempElements.push(document.createElement('div'))
+        tempElements[0].className = 'flexWrap'
         while (Math.round(Math.random() * 100) <= actionChance) {
             console.log(3)
             actionReal = viable[Math.round(Math.random() * (viable.length - 1))].clone()
-            actionReal.run(this);
+            actionReal.run(this, this.container);
             actionChance /= 3;
             actionChance = Math.round(actionChance)
         }

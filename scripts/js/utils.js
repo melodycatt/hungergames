@@ -54,4 +54,3 @@ export const PresetActions = [
     new Action("this.players[0].name + ' gets a piece of bread.'", 1, [new items.ActionItemTemplate([PresetItems.Food.Bread], [0], "gain", {})]),
     new Action("this.players[0].name + ' pees.'", 2, [new items.ActionItemTemplate([PresetItems.null], [0], "none", {})]),
 ];
-

@@ -107,6 +107,18 @@ section.inactive {
     flex-wrap: wrap;
 }
 
+.flexWrap {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.playerActionContainer {
+    border: 1px solid black;
+}
+
 .navicon a {
     font-size: 2em;
     color: #fff;

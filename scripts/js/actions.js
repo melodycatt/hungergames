@@ -6,7 +6,6 @@ const section = document.getElementById('day')
 export class Action {
     //constructor stuff
     action = document.createElement('div');
-    container = document.createElement('div');
     constructor(text, playersNeeded, itemData) {
         //players involved
         this.cloneData = [text, playersNeeded, itemData]
@@ -17,7 +16,7 @@ export class Action {
         this.itemData = itemData;
     }
     //does all the stuff the action does
-    run(owner) {
+    run(owner, container) {
         console.log(5)
         this.players = [owner]
         let viable = this.viablePlayers
@@ -31,15 +30,10 @@ export class Action {
             i.parent = this;
             i.run(owner)
         }
-        this.container.className = 'actionContainer'
-        section.appendChild(this.container)
-        for (let player of this.players) {
-            console.log(8)
-            this.container.appendChild(player.img.cloneNode());
-        }
-        this.action.className = 'action';
-        this.action.innerHTML = eval(this.text);
-        this.container.appendChild(this.action);
+        action.className = 'action';
+        action.innerHTML = eval(this.text);
+        container.appendChild(this.action.cloneNode());
+        container.appendChild(this.itemData.effects.cloneNode())
     }
     
     get viablePlayers() {
