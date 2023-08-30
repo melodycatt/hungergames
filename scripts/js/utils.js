@@ -32,6 +32,9 @@ export function range(start, end, inclusive = false) {
 //presets of items and events
 export let Presets = {
     Actions: [
+        new Action("this.players[0].name + ' stabs ' + this.players[1].name + ' with a Spear.'", 2, '[new items.ActionItemTemplate([Presets.Actions.Weapons.Spear], [1], "attack", {affectedPlayers: [1]})]'),
+        new Action("this.players[0].name + ' tries to climb a tree, but falls out of it and dies.'", 2, '[new items.ActionItemTemplate([Presets.Actions.Weapons.Spear], [1], "attack", {affectedPlayers: [1]})]'),
+        new Action("this.players[0].name + ' gets a piece of bread.'", 2, '[new items.ActionItemTemplate([Presets.Actions.Weapons.Spear], [1], "attack", {affectedPlayers: [1]})]'),
         "new Action(\"this.players[0].name + ' stabs ' + this.players[1].name + ' with a Spear.'\", 2, '[Presets.Items.null, 0]', '[Presets.Items.null, 0]', '[Presets.Items.Weapons.Spear, 1]')",
         "new Action(\"this.players[0].name + ' tries to climb a tree, but falls out of it and dies.'\", 1, '[Presets.Items.null, 0]', '[Presets.Items.null, 0]', '[Presets.Items.kill, 0]')",
         "new Action(\"this.players[0].name + ' gets a piece of bread.'\", 1, '[Presets.Items.null, 0]', '[Presets.Items.Food.Bread, 0]', '[Presets.Items.null, 0]')"
@@ -63,7 +66,7 @@ export let Presets = {
 export function viableActions(player) {
     let output = []
     for (let action of Presets.Actions) {
-        action = eval(action);
+        action.itemData = eval(action.itemData);
         if (action.playersNeeded <= playersAlive.length) {
             for ( let i of action.itemData) {
                 if (i.type == 'attack' || 'eat') {

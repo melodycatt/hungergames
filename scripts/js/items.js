@@ -25,6 +25,7 @@ export class Food extends Item {
 
 export class ActionItemTemplate {
     static types = ["attack", "eat", "craft"]
+    parent;
     constructor (itemInstances, players, type, tags) {
         this.players = players
         this.itemInstances = itemInstances;
@@ -37,14 +38,14 @@ export class ActionItemTemplate {
             this.itemInstances[0].durability -= 1;
             this.owner.inv[this.owner.inv.indexOf(this.itemInstances[0])] = this.itemInstances[0]
             for (let player of this.affectedPlayers) {
-                player.stats.health -= this.itemInstances[0].damage;
-                if (player.stats.health <= 0) {
-                    player.kill();
+                this.parent.players[player].stats.health -= this.itemInstances[0].damage;
+                if (this.parent.players[player].stats.health <= 0) {
+                    this.parent.players[player].kill();
                 }
             }
         } else if (this.type = "eat") {
-            for (let player of this.players) {
-                player.hunger -= this.itemInstances[0].hunger;
+            for (let player in this.players) {
+                this.parent.players[player].hunger -= this.itemInstances[0].hunger;
             }
         } else if (this.type == "craft") {
             for (let i in range(0, this.tags.itemsLost - 1)) {
@@ -53,9 +54,9 @@ export class ActionItemTemplate {
             for (let i in range(this.tags.itemsLost, this.tags.itemsGained - 1)) {
                 this.itemInstances[i].count += tags.count[i];
             }
-            for (let player of this.players) {
+            for (let player in this.players) {
                 for (let item in itemInstances) {
-                    player.inv[item] = this.itemInstances[item]
+                    this.parent.players[player].inv[item] = this.itemInstances[item]
                 }
             }
         }
