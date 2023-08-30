@@ -31,8 +31,10 @@ export class Player {
     event() {
         let actionChance = 100;
         let actionReal;
+        console.log(4)
         let viable = this.viableActions;
         while (Math.round(Math.random * 100) <= actionChance) {
+            console.log(3)
             actionReal = viable[Math.round(Math.random * (viable.length - 1))].clone()
             actionReal.run();
             actionChance /= 3;

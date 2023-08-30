@@ -18,12 +18,13 @@ export let playersAlive = [
 ];
 const section = document.getElementById('day')
 const dayButton = document.getElementById('dayBtn')
-dayButton.addEventListener("mouseup", (e) => {
+dayButton.addEventListener("click", (e) => {
     day()
 })
 //loop through the players and runs the event method on each
 export function day() {
     for (let player of playersAlive) {
+        console('1')
         player.event()
     }
 }

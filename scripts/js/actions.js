@@ -18,11 +18,14 @@ export class Action {
     }
     //does all the stuff the action does
     run(owner) {
+        console.log(5)
         this.players = [owner]
         while (this.players.length < this.playersNeeded) {
+            console.log(6)
             this.players.push(this.viablePlayers[Math.round(Math.random * (this.viablePlayers.length - 1))])
         }
         for (let i of this.itemData) {
+            console.log(7)
             console.log(i)
             this.itemData[i].parent = this;
             this.itemData[i].run(owner)
@@ -30,6 +33,7 @@ export class Action {
         this.container.className = 'actionContainer'
         section.appendChild(this.container)
         for (let player of this.players) {
+            console.log(8)
             this.container.appendChild(player.img.cloneNode());
         }
         this.action.className = 'action';
