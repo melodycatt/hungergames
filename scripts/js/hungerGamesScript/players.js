@@ -31,8 +31,8 @@ export class Player {
     event() {
         let actionChance = 100;
         let actionReal;
-        console.log(4)
         let viable = this.viableActions;
+        console.log(4, viable)
         while (Math.round(Math.random() * 100) <= actionChance) {
             console.log(3)
             actionReal = viable[Math.round(Math.random() * (viable.length - 1))].clone()
@@ -88,6 +88,7 @@ export class Player {
     get viableActions() {
         let out = 0
         for (let action of PresetActions) {
+            console.log(action.viablePlayers)
             if (action.viablePlayers.includes(this) && action.viablePlayers.includes(this) <= playersAlive.length) {
                 out.push(action);
             }
