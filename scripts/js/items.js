@@ -28,9 +28,9 @@ export class ActionItemTemplate {
     parent;
     constructor (itemInstances, players, type, tags) {
         this.players = players
-        console.log(this.types)
+        console.log(ActionItemTemplate.types)
         this.itemInstances = itemInstances;
-        if (this.types.includes(type)) {
+        if (ActionItemTemplate.types.includes(type)) {
             this.type = type
         }
         if (this.type == "attack" && this.itemInstances[0] instanceof Weapon) {
