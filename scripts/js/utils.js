@@ -54,39 +54,3 @@ export const PresetActions = [
     new Action("this.players[0].name + ' gets a piece of bread.'", 2, [new items.ActionItemTemplate([PresetItems.Weapons.Spear], [1], "attack", {affectedPlayers: [1]})]),
 ];
 
-/**
- * Returns Viable Player Actions
- * @param { Player } player 
- * @returns {Array}
- */
-export function viableActions(player) {
-    let output = []
-    for (let action of PresetActions) {
-        action.itemData = eval(action.itemData);
-        if (action.playersNeeded <= playersAlive.length) {
-            for ( let i of action.itemData) {
-                if (i.type == 'attack' || 'eat') {
-                    if (player.hasItem(i.itemInstances[0])) {
-                        output.push(action);
-                    }
-                } else if (i.type == 'craft') {
-                    let hasI = 0
-                    for (let a in i.itemInstances) {
-                        if (player.hasItem(i.itemInstances[a])) {
-                            hasI++; 
-                        }
-                    }
-                    if (hasI == i.itemInstances.length) {
-                        output.push(action)
-                    }
-                } else if (i.type == 'gain') {
-                    output.push(action)
-                }
-            }
-        } else {
-            continue;
-        }
-    }
-    return output
-}
-

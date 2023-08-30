@@ -1,7 +1,5 @@
 "use strict";
-import * as utils from "../utils.js"
-import * as items from "../items.js"
-import { Action } from "../actions.js"
+import { PresetActions, ranIntInterval } from "../utils.js";
 import { playersAlive } from "./main.js";
 
 const section = document.getElementById('day')
@@ -20,11 +18,11 @@ export class Player {
         this.img.style.height = '100px';
         this.img.style.objectFit = 'cover';
         this.stats = {
-            maxHealth: utils.ranIntInterval(80, 130),
+            maxHealth: ranIntInterval(80, 130),
             health: null,
-            speed: utils.ranIntInterval(8, 12),
-            strength: utils.ranIntInterval(8, 12),
-            defense: utils.ranIntInterval(8, 12)
+            speed: ranIntInterval(8, 12),
+            strength: ranIntInterval(8, 12),
+            defense: ranIntInterval(8, 12)
         };
         this.stats.health = this.stats.maxHealth;
     }
@@ -33,21 +31,13 @@ export class Player {
     event() {
         let actionChance = 100;
         let actionReal;
-        let viable = utils.viableActions();
-        if(Math.round(Math.random * 100) <= actionChance) {
-            actionReal = viable[Math.round(Math.random * (viable.length - 1))]
+        let viable = this.viableActions;
+        while (Math.round(Math.random * 100) <= actionChance) {
+            actionReal = viable[Math.round(Math.random * (viable.length - 1))].clone()
+            actionReal.run();
+            actionChance /= 3;
+            actionChance = Math.round(actionChance)
         }
-        //adds this to the action's list of players invoved
-        actionReal.players = [this];
-        //adds a random other player (and removes that random player from the list) to the list of involved players to fulfill the amount of players needed for the action 
-        for (let i = 0; i < actionReal.playersNeeded - 1; i++) {
-            let tempPlayer = playersAlive[Math.round(Math.random() * (playersAlive.length - 1))];
-            if ( tempPlayer.viable(actionReal) ) {
-                actionReal.players.push(tempPlayer);
-            }
-        }
-        //does all the things the action does just go to the action declaration
-        actionReal.run();
     }
     // removes this from the alive players. tbh dont know why this is a function when its 1 line
     kill() {
@@ -91,5 +81,15 @@ export class Player {
             }
         }
         return false;
+    }
+
+    get viableActions() {
+        let out = 0
+        for (let action of PresetActions) {
+            if (action.viablePlayers.includes(this) && action.viablePlayers.includes(this) <= playersAlive.length) {
+                out.push(action);
+            }
+        }
+        return out;
     }
 }
