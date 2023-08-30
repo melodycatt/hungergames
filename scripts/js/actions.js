@@ -27,8 +27,8 @@ export class Action {
         for (let i of this.itemData) {
             console.log(7)
             console.log(i)
-            this.itemData[i].parent = this;
-            this.itemData[i].run(owner)
+            i.parent = this;
+            i.run(owner)
         }
         this.container.className = 'actionContainer'
         section.appendChild(this.container)
@@ -46,7 +46,7 @@ export class Action {
         for ( let player of playersAlive ) {
             let add = 0
             for ( let i of this.itemData) {
-                if (i.type == 'attack' || 'eat') {
+                if (i.type == 'attack' || i.type == 'eat') {
                     if (player.hasItem(i.itemInstances[0])) {
                         add++
                     }
