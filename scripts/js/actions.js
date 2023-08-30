@@ -8,11 +8,11 @@ export class Action {
     container = document.createElement('div');
     constructor(text, playersNeeded, itemData) {
         //players involved
-        console.log(itemData, itemData[0])
+        console.log(itemData, itemData[0], eval(itemData))
         this.players = [];
         this.text = text;
         this.playersNeeded = playersNeeded;
-        this.itemData = itemData
+        this.itemData = eval(itemData)
         for (let i in this.itemData) {
             console.log(i)
             this.itemData[i] = eval(this.itemData[i]);
