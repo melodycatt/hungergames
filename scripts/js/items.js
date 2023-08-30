@@ -55,14 +55,14 @@ export class ActionItemTemplate {
                     this.parent.players[player].kill();
                 }
             }
-            this.effects.appendChild(this.effectsExtra)
+            this.effects.appendChild(this.effectsExtra.cloneNode(true))
         } else if (this.type == "eat") {
             this.effects.innerHTML = `+${this.itemInstances[0].hunger} hunger ▼`
             for (let player in this.players) {
                 this.effectsExtra.innerHTML = this.effectsExtra.innerHTML + `${this.parent.players[player].name} gains ${this.itemInstances[0].hunger} hunger.` + this.players.indexOf(player) < this.players.length - 1 ? '\n' : ''
                 this.parent.players[player].hunger -= this.itemInstances[0].hunger;
             }
-            this.effects.appendChild(this.effectsExtra)
+            this.effects.appendChild(this.effectsExtra.cloneNode(true))
         } else if (this.type == "craft") {
             this.effects.innerHTML = `Crafting ▼`
             for (let i in range(0, this.tags.itemsLost - 1)) {
@@ -78,14 +78,14 @@ export class ActionItemTemplate {
                     this.parent.players[player].inv[item] = item;
                 }
             }
-            this.effects.appendChild(this.effectsExtra)
+            this.effects.appendChild(this.effectsExtra.cloneNode(true))
         } else if (this.type == "gain") {
-            this.effects.innerHTML = `+${this.itemInstances[0].count} ${this.itemInstances[0].count} ▼`
+            this.effects.innerHTML = `+${this.itemInstances[0].count} ${this.itemInstances[0].name} ▼`
             for (let player in this.players) {
                 this.effectsExtra.innerHTML = this.effectsExtra.innerHTML + `${this.parent.players[player].name} gains ${this.itemInstances[0].count} ${this.itemInstances[0].count}.` + this.players.indexOf(player) < this.players.length - 1 ? '\n' : ''
                 this.parent.players[player].inv.push(this.itemInstances[0]);
             }
-            this.effects.appendChild(this.effectsExtra)
+            this.effects.appendChild(this.effectsExtra.cloneNode(true))
         }
     }
 }
