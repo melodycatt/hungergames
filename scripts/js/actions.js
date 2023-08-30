@@ -30,8 +30,8 @@ export class Action {
             i.parent = this;
             i.run(owner)
         }
-        action.className = 'action';
-        action.innerHTML = eval(this.text);
+        this.action.className = 'action';
+        this.action.innerHTML = eval(this.text);
         container.appendChild(this.action.cloneNode());
         container.appendChild(this.itemData.effects.cloneNode())
     }
