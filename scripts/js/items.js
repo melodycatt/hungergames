@@ -28,6 +28,7 @@ export class ActionItemTemplate {
     parent;
     constructor (itemInstances, players, type, tags) {
         this.players = players
+        console.log(this.types)
         this.itemInstances = itemInstances;
         if (this.types.includes(type)) {
             this.type = type
