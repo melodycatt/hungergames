@@ -23,7 +23,7 @@ export class Action {
         let viable = this.viablePlayers
         while (this.players.length < this.playersNeeded) {
             console.log(6)
-            this.players.push(viable.splice(Math.round(Math.random() * (viable.length - 1))), 1)
+            this.players.push(viable.splice(Math.round(Math.random() * (viable.length - 1)), 1)[0])
         }
         for (let i of this.itemData) {
             console.log(7)
