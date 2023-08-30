@@ -36,7 +36,7 @@ export class Player {
         while (Math.round(Math.random() * 100) <= actionChance) {
             console.log(3)
             actionReal = viable[Math.round(Math.random() * (viable.length - 1))].clone()
-            actionReal.run();
+            actionReal.run(this);
             actionChance /= 3;
             actionChance = Math.round(actionChance)
         }
