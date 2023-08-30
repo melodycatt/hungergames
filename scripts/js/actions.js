@@ -24,12 +24,8 @@ export class Action {
             console.log(6)
             this.players.push(viable.splice(Math.round(Math.random() * (viable.length - 1)), 1)[0])
         }
-        for (let i of this.itemData) {
-            console.log(7)
-            console.log(i)
-            i.parent = this;
-            i.run(owner)
-        }
+        this.itemData.parent = this;
+        this.itemData.run(owner)
         this.action.className = 'action';
         this.action.innerHTML = eval(this.text);
         container.appendChild(this.action.cloneNode());
