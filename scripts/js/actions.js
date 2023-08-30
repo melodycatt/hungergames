@@ -8,12 +8,13 @@ export class Action {
     container = document.createElement('div');
     constructor(text, playersNeeded, itemData) {
         //players involved
-        console.log(itemData)
+        console.log(itemData, itemData[0])
         this.players = [];
         this.text = text;
         this.playersNeeded = playersNeeded;
         this.itemData = itemData
         for (let i in this.itemData) {
+            console.log(i)
             this.itemData[i] = eval(this.itemData[i]);
             this.itemData[i].parent = this;
         }
