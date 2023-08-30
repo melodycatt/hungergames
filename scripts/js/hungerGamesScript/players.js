@@ -86,7 +86,7 @@ export class Player {
     }
 
     get viableActions() {
-        let out = 0
+        let out = [];
         for (let action of PresetActions) {
             console.log(action.viablePlayers)
             if (action.viablePlayers.includes(this) && action.viablePlayers.includes(this) <= playersAlive.length) {

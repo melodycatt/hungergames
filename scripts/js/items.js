@@ -56,7 +56,7 @@ export class ActionItemTemplate {
                 }
             }
             this.effects.appendChild(this.effectsExtra)
-        } else if (this.type = "eat") {
+        } else if (this.type == "eat") {
             this.effects.innerHTML = `+${this.itemInstances[0].hunger} hunger ▼`
             for (let player in this.players) {
                 this.effectsExtra.innerHTML = this.effectsExtra.innerHTML + `${this.parent.players[player].name} gains ${this.itemInstances[0].hunger} hunger.` + this.players.indexOf(player) < this.players.length - 1 ? '\n' : ''
