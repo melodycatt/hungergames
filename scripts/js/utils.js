@@ -48,13 +48,11 @@ export const PresetItems = {
 }
 
 //presets of items and events
-export const PresetsActions = {
-    Actions: [
-        new Action("this.players[0].name + ' stabs ' + this.players[1].name + ' with a Spear.'", 2, [new items.ActionItemTemplate([Presets.Actions.Weapons.Spear], [1], "attack", {affectedPlayers: [1]})]),
-        new Action("this.players[0].name + ' tries to climb a tree, but falls out of it and dies.'", 2, [new items.ActionItemTemplate([Presets.Actions.Weapons.Spear], [1], "attack", {affectedPlayers: [1]})]),
-        new Action("this.players[0].name + ' gets a piece of bread.'", 2, [new items.ActionItemTemplate([Presets.Actions.Weapons.Spear], [1], "attack", {affectedPlayers: [1]})]),
-    ],
-};
+export const PresetActions = [
+    new Action("this.players[0].name + ' stabs ' + this.players[1].name + ' with a Spear.'", 2, [new items.ActionItemTemplate([PresetItems.Weapons.Spear], [1], "attack", {affectedPlayers: [1]})]),
+    new Action("this.players[0].name + ' tries to climb a tree, but falls out of it and dies.'", 2, [new items.ActionItemTemplate([PresetItems.Weapons.Spear], [1], "attack", {affectedPlayers: [1]})]),
+    new Action("this.players[0].name + ' gets a piece of bread.'", 2, [new items.ActionItemTemplate([PresetItems.Weapons.Spear], [1], "attack", {affectedPlayers: [1]})]),
+];
 
 /**
  * Returns Viable Player Actions
@@ -63,7 +61,7 @@ export const PresetsActions = {
  */
 export function viableActions(player) {
     let output = []
-    for (let action of Presets.Actions) {
+    for (let action of PresetActions) {
         action.itemData = eval(action.itemData);
         if (action.playersNeeded <= playersAlive.length) {
             for ( let i of action.itemData) {
