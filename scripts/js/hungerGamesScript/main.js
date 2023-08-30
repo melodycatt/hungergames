@@ -1,7 +1,7 @@
 "use strict";
 
 import { Player } from "./players.js"
-import { Presets } from "../utils.js"
+import { PresetsActions, PresetItems } from "../utils.js"
 import * as items from "../items.js" 
 import { Action } from "../actions.js"
 //this whole thing is a hunger games sim
