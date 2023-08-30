@@ -22,7 +22,7 @@ export class Action {
         this.players = [owner]
         while (this.players.length < this.playersNeeded) {
             console.log(6)
-            this.players.push(this.viablePlayers[Math.round(Math.random * (this.viablePlayers.length - 1))])
+            this.players.push(this.viablePlayers[Math.round(Math.random() * (this.viablePlayers.length - 1))])
         }
         for (let i of this.itemData) {
             console.log(7)
