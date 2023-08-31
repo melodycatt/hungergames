@@ -38,8 +38,10 @@ export class ActionItemTemplate {
     run(owner) {        
         this.effects = document.createElement('div');
         this.effectsExtra = document.createElement('div');
-        this.effects.className = this.type + 'Effect';
-        this.effectsExtra.className = this.type + 'EffectExtra';
+        this.effects.classList.add(this.type + 'Effect');
+        this.effects.classList.add('effect');
+        this.effectsExtra.classList.add(this.type + 'EffectExtra');
+        this.effectsExtra.classList.add('effectExtra');
 
         if (this.type == "attack" && this.itemInstances[0] instanceof Weapon) {
             this.effects.innerHTML = `${this.itemInstances[0].damage} damage ▼`

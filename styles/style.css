@@ -120,6 +120,18 @@ section.inactive {
     display: inline-block;
 }
 
+.effectExtra {
+    display: none;
+}
+
+.effect:hover .effectExtra {
+    display: block;
+    z-index: 1;
+    position: absolute;
+    background-color: #fff;
+    border: 2px solid gray;
+}
+
 .action {
     color: #fff;
 }
