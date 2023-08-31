@@ -41,8 +41,7 @@ export class Player {
         tempElements[0].className = 'flexWrap'
         while (Math.round(Math.random() * 100) <= actionChance && this.alive == true) {
             console.log(3)
-            actionReal = viable[Math.round(Math.random() * (viable.length - 1))].clone()
-            viable.splice(viable.indexOf(actionReal), 1)
+            actionReal = viable.splice(Math.round(Math.random() * (viable.length - 1)), 1)[0].clone()
             actionReal.run(this, this.container);
             actionChance /= 3;
             actionChance = Math.round(actionChance)
