@@ -28,7 +28,6 @@ export class ActionItemTemplate {
     effects;
     constructor (itemInstances, players, type, tags) {
         this.players = players
-        console.log(ActionItemTemplate.types)
         this.itemInstances = itemInstances;
         if (ActionItemTemplate.types.includes(type)) {
             this.type = type
@@ -87,8 +86,5 @@ export class ActionItemTemplate {
             }
             this.effects.appendChild(this.effectsExtra.cloneNode(true))
         }
-        console.log(this.effects.innerHTML)
-        console.log(this.effectsExtra.innerHTML)
-        console.log(this.players)
     }
 }

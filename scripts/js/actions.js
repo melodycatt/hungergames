@@ -9,7 +9,6 @@ export class Action {
     constructor(text, playersNeeded, itemData) {
         //players involved
         this.cloneData = [text, playersNeeded, itemData]
-        console.log(itemData, itemData[0], eval(itemData))
         this.players = [];
         this.text = text;
         this.playersNeeded = playersNeeded;
@@ -17,21 +16,17 @@ export class Action {
     }
     //does all the stuff the action does
     run(owner, container) {
-        console.log(5)
         this.players = [owner]
         let viable = this.viablePlayers
         while (this.players.length < this.playersNeeded) {
-            console.log(6)
             this.players.push(viable.splice(Math.round(Math.random() * (viable.length - 1)), 1)[0])
         }
         this.itemData.parent = this;
         this.itemData.run(owner)
         this.action.className = 'action';
         this.action.innerHTML = eval(this.text);
-        console.log(this.action.innerHTML)
         container.appendChild(this.action.cloneNode(true));
         container.appendChild(this.itemData.effects.cloneNode(true))
-        console.log(this.action.innerHTML)
     }
     
     get viablePlayers() {

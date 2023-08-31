@@ -33,7 +33,6 @@ export class Player {
         let actionChance = 100;
         let actionReal;
         let viable = this.viableActions;
-        console.log(4, viable)
         this.container.className = 'playerActionContainer'
         this.container.appendChild(this.img.cloneNode(true))
         let tempElements = []
@@ -95,7 +94,6 @@ export class Player {
     get viableActions() {
         let out = [];
         for (let action of PresetActions) {
-            console.log(action.viablePlayers)
             if (action.viablePlayers.includes(this) && action.viablePlayers.includes(this) <= playersAlive.length) {
                 out.push(action);
             }
