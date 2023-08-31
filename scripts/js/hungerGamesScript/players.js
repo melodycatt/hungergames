@@ -7,6 +7,7 @@ const section = document.getElementById('day')
 export class Player {
     //constructor ofc
     container = document.createElement('div');
+    alive = true
     constructor(name, img) {
         this.inv = [];
         this.alliances = [];
@@ -38,9 +39,10 @@ export class Player {
         let tempElements = []
         tempElements.push(document.createElement('div'))
         tempElements[0].className = 'flexWrap'
-        while (Math.round(Math.random() * 100) <= actionChance) {
+        while (Math.round(Math.random() * 100) <= actionChance && this.alive == true) {
             console.log(3)
             actionReal = viable[Math.round(Math.random() * (viable.length - 1))].clone()
+            viable.splice(viable.indexOf(actionReal), 1)
             actionReal.run(this, this.container);
             actionChance /= 3;
             actionChance = Math.round(actionChance)
@@ -50,6 +52,7 @@ export class Player {
     // removes this from the alive players. tbh dont know why this is a function when its 1 line
     kill() {
         playersAlive.splice(playersAlive.indexOf(this), 1);
+        this.alive = false
     }
     //hunger stuff. it is the *hunger* games after all
     handleHunger() {
