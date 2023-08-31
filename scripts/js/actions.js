@@ -58,13 +58,3 @@ export class Action {
         return new Action(this.cloneData[0], this.cloneData[1], this.cloneData[2]);
     }
 }
-
-
-
-let frog = {
-    health: 10,
-    angry: false
-}
-
-frog['angry']
-frog.angry
