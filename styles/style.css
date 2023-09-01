@@ -118,18 +118,21 @@ section.inactive {
 .playerActionContainer {
     border: 1px solid white;
     display: inline-block;
+    margin: 50px;
 }
 
 .effectExtra {
     display: none;
-}
-
-.effect:hover .effectExtra {
-    display: block;
+    color: black;
     z-index: 1;
     position: absolute;
     background-color: #fff;
     border: 2px solid gray;
+    padding: 10px;
+}
+
+.effect:hover .effectExtra {
+    display: block;
 }
 
 .action {

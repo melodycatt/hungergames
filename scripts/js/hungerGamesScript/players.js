@@ -18,7 +18,7 @@ export class Player {
         this.img.src = img || 'default.jpg';
         this.img.style.width = '100px';
         this.img.style.height = '100px';
-        this.img.style.objectFit = 'cover';
+        this.img.style.margin = '25px';
         this.stats = {
             maxHealth: ranIntInterval(80, 130),
             health: null,
@@ -34,11 +34,9 @@ export class Player {
         let actionChance = 100;
         let actionReal;
         let viable = this.viableActions;
-        this.container.className = 'playerActionContainer'
+        this.container.classList.add('playerActionContainer');
+        this.container.classList.add('flexWrap');
         this.container.appendChild(this.img.cloneNode(true))
-        let tempElements = []
-        tempElements.push(document.createElement('div'))
-        tempElements[0].className = 'flexWrap'
         while (Math.round(Math.random() * 100) <= actionChance && this.alive == true) {
             console.log(3)
             actionReal = viable.splice(Math.round(Math.random() * (viable.length - 1)), 1)[0].clone()
