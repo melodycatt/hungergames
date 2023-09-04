@@ -37,6 +37,9 @@ export class Player {
         this.container.classList.add('playerActionContainer');
         this.container.classList.add('flexWrap');
         this.container.appendChild(this.img.cloneNode(true))
+        for (i of this.menus) {
+            this.container.appendChild(i)
+        }
         while (Math.round(Math.random() * 100) <= actionChance && this.alive == true) {
             console.log(3)
             actionReal = viable.splice(Math.round(Math.random() * (viable.length - 1)), 1)[0].clone()
@@ -99,5 +102,14 @@ export class Player {
             }
         }
         return out;
+    }
+
+    get menus() {
+        output = [[document.createElement('div').classList.addd('playerInv'), document.createElement('div').classList.add('playerInvContent')], [document.createElement('div').classList.addd('playerStats'), document.createElement('div').classList.add('playerStatsContent')]]
+        output[0][1].innerHTML = this.inv
+        output[0][0].appendChild(output[0][1])
+        output[1][1].innerHTML = this.stats
+        output[1][0].appendChild(output[1][1])
+        return [output[0][0], output[1][0]]
     }
 }
