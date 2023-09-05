@@ -91,6 +91,7 @@ section.inactive {
     background-color: #04AA6D;
     display: flex;
     justify-content: center;
+    z-index: 1;
 }
 
 /* Style the links inside the navigation bar */
@@ -150,3 +151,30 @@ section.inactive {
     translate: 0px -15px;
     box-shadow: 0px 15px 0px #01764b;
 } */
+
+.playerInvContent {
+    display: none;
+    color: black;
+    z-index: 1;
+    position: absolute;
+    background-color: #fff;
+    border: 2px solid gray;
+    padding: 10px;
+}
+
+.playerInv:hover .playerInvContent {
+    display: block;
+}
+.playerStatsContent {
+    display: none;
+    color: black;
+    z-index: 1;
+    position: absolute;
+    background-color: #fff;
+    border: 2px solid gray;
+    padding: 10px;
+}
+
+.playerStats:hover .playerStatsContent {
+    display: block;
+}
