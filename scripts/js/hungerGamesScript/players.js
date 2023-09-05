@@ -105,11 +105,15 @@ export class Player {
     }
 
     get menus() {
-        output = [[document.createElement('div').classList.addd('playerInv'), document.createElement('div').classList.add('playerInvContent')], [document.createElement('div').classList.addd('playerStats'), document.createElement('div').classList.add('playerStatsContent')]]
+        output = [[document.createElement('div'), document.createElement('div')], [document.createElement('div').classList.add('playerStats'), document.createElement('div')]]
         output[0][1].innerHTML = this.inv
         output[0][0].appendChild(output[0][1])
+        output[0][0].classList.add('playerInv')
+        output[0][1].classList.add('playerInvContent')
         output[1][1].innerHTML = this.stats
         output[1][0].appendChild(output[1][1])
+        output[1][0].classList.add('playerInv')
+        output[1][1].classList.add('playerInvContent')
         return [output[0][0], output[1][0]]
     }
 }
