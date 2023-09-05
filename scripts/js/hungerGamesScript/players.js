@@ -37,7 +37,7 @@ export class Player {
         this.container.classList.add('playerActionContainer');
         this.container.classList.add('flexWrap');
         this.container.appendChild(this.img.cloneNode(true))
-        for (i of this.menus) {
+        for (let i of this.menus) {
             this.container.appendChild(i)
         }
         while (Math.round(Math.random() * 100) <= actionChance && this.alive == true) {
@@ -105,7 +105,7 @@ export class Player {
     }
 
     get menus() {
-        output = [[document.createElement('div'), document.createElement('div')], [document.createElement('div').classList.add('playerStats'), document.createElement('div')]]
+        let output = [[document.createElement('div'), document.createElement('div')], [document.createElement('div'), document.createElement('div')]]
         output[0][1].innerHTML = this.inv
         output[0][0].appendChild(output[0][1])
         output[0][0].classList.add('playerInv')
