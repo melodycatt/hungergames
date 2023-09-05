@@ -4,8 +4,6 @@ import { playersAlive } from "./main.js";
 
 const section = document.getElementById('day')
 
-//idk this is tryna fix smth
-
 export class Player {
     //constructor ofc
     container = document.createElement('div');
