@@ -37,15 +37,15 @@ export class Player {
         this.container.classList.add('playerActionContainer');
         this.container.classList.add('flexWrap');
         this.container.appendChild(this.img.cloneNode(true))
-        for (let i of this.menus) {
-            this.container.appendChild(i)
-        }
         while (Math.round(Math.random() * 100) <= actionChance && this.alive == true) {
             console.log(3)
             actionReal = viable.splice(Math.round(Math.random() * (viable.length - 1)), 1)[0].clone()
             actionReal.run(this, this.container);
             actionChance /= 3;
             actionChance = Math.round(actionChance)
+        }
+        for (let i of this.menus) {
+            this.container.prepend(i)
         }
         section.appendChild(this.container.cloneNode(true))
     }
