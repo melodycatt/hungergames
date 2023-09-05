@@ -106,10 +106,12 @@ export class Player {
 
     get menus() {
         let output = [[document.createElement('div'), document.createElement('div')], [document.createElement('div'), document.createElement('div')]]
+        output[0][0].innerHTML = "Inventory ▼"
         output[0][1].innerHTML = JSON.stringify(this.inv)
         output[0][0].appendChild(output[0][1])
         output[0][0].classList.add('playerInv')
         output[0][1].classList.add('playerInvContent')
+        output[1][0].innerHTML = "Stats ▼"
         output[1][1].innerHTML = JSON.stringify(this.stats)
         output[1][0].appendChild(output[1][1])
         output[1][0].classList.add('playerStats')
