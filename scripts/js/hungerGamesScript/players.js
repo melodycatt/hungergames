@@ -36,7 +36,6 @@ export class Player {
         let viable = this.viableActions;
         this.container.classList.add('playerActionContainer');
         this.container.classList.add('flexWrap');
-        this.container.appendChild(this.img.cloneNode(true))
         while (Math.round(Math.random() * 100) <= actionChance && this.alive == true) {
             console.log(3)
             actionReal = viable.splice(Math.round(Math.random() * (viable.length - 1)), 1)[0].clone()
@@ -47,6 +46,7 @@ export class Player {
         for (let i of this.menus) {
             this.container.prepend(i)
         }
+        this.container.prepend(this.img.cloneNode(true))
         section.appendChild(this.container.cloneNode(true))
     }
     // removes this from the alive players. tbh dont know why this is a function when its 1 line

@@ -5,8 +5,8 @@ html, body {
 }
 
 #day {
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
     width: 100%;
     height: 100%;
 }
@@ -117,10 +117,10 @@ section.inactive {
 }
 
 .playerActionContainer {
-    border: 1px solid white;
+    border: 1px solid gray;
     display: inline-block;
     margin: 50px;
-    padding: 2px;
+    padding: 15px;
 }
 
 .effectExtra {
@@ -160,11 +160,29 @@ section.inactive {
     background-color: #fff;
     border: 2px solid gray;
     padding: 10px;
+    width: 200px;
 }
 
 .playerInv:hover .playerInvContent {
     display: block;
 }
+
+.playerInv {
+    color: rgb(0, 165, 0);
+}
+
+.gainEffect {
+    color: rgb(0, 128, 255)
+}
+
+.craftEffect {
+    color: rgb(255, 217, 0);
+}
+
+.attackEffect {
+    color: red;
+}
+
 .playerStatsContent {
     display: none;
     color: black;
@@ -173,6 +191,7 @@ section.inactive {
     background-color: #fff;
     border: 2px solid gray;
     padding: 10px;
+    width: 200px;
 }
 
 .playerStats:hover .playerStatsContent {
