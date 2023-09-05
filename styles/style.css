@@ -131,6 +131,8 @@ section.inactive {
     background-color: #fff;
     border: 2px solid gray;
     padding: 10px;
+    max-width: 215px;
+    word-wrap: normal;
 }
 
 .effect:hover .effectExtra {
@@ -155,12 +157,13 @@ section.inactive {
 .playerInvContent {
     display: none;
     color: black;
-    z-index: 1;
+    z-index: 10;
     position: absolute;
     background-color: #fff;
     border: 2px solid gray;
     padding: 10px;
-    width: 200px;
+    max-width: 215px;
+    word-wrap: normal;
 }
 
 .playerInv:hover .playerInvContent {
@@ -186,12 +189,13 @@ section.inactive {
 .playerStatsContent {
     display: none;
     color: black;
-    z-index: 1;
+    z-index: 10;
     position: absolute;
     background-color: #fff;
     border: 2px solid gray;
     padding: 10px;
-    width: 200px;
+    max-width: 215px;
+    word-wrap: normal;
 }
 
 .playerStats:hover .playerStatsContent {
