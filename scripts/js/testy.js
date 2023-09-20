@@ -1,5 +1,3 @@
-import * as NoiseMap from './map.js';
-
 var generator = new NoiseMap.MapGenerator();
 var heightmap = generator.createMap(400, 200, {type: 'perlin'});
 
