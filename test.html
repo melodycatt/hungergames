@@ -22,16 +22,22 @@
         <canvas id="map-canvas" width="128" height="128"></canvas>
         <canvas id="moisture-canvas" width="128" height="128"></canvas>
         <canvas id="height-canvas" width="128" height="128"></canvas>
-        <label for="size">\nSize of the map:</label>
+        <div> </div>
+        <label for="size">Size of the map:</label>
         <input type="range" id="size" min="16" max="128" step="1" value="32">
-        <label for="height">\nGeneral height of the map (lower value = higher terrain):</label>
+        <div> </div>
+        <label for="height">General height of the map (lower value = higher terrain):</label>
         <input type="range" id="height" min="0.1" max="3" step="0.01" value="1">
-        <label for="moisture">\nGeneral moistness of the map (lower value = moister terrain):</label>
+        <div> </div>
+        <label for="moisture">General moistness of the map (lower value = moister terrain):</label>
         <input type="range" id="moisture" min="0.1" max="3" step="0.01" value="1">
-        <label for="heightfrequency">\nNoisiness/frequency of the height generation (lower value = more spiky terrain):</label>
+        <div> </div>
+        <label for="heightfrequency">Noisiness/frequency of the height generation (lower value = more spiky terrain):</label>
         <input type="range" id="heightfrequency" min="0.1" max="2" step="0.1" value="1">
-        <label for="moistfrequency">\nNoisiness/frequency of the moisture generation (lower value = more spiky moistness):</label>
+        <div> </div>
+        <label for="moistfrequency">Noisiness/frequency of the moisture generation (lower value = more spiky moistness):</label>
         <input type="range" id="moistfrequency" min="0.1" max="2" step="0.1" value="1">
+        <div> </div>
         <button id="gen">Generate!</button>
     </body>
 </html>
