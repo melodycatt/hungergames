@@ -19,16 +19,19 @@ class hgMap {
       WMOUNTAINS: ['#e3e3e3', 'WMOUNTAINS'],
    }
 
-   constructor(width, height) {
+   constructor(width, height, heightm, moisture) {
+      console.log(width, height, heightm, moisture);
+      this.heightm = heightm
+      this.moisture = moisture
       this.width = width;
       this.height = height;
       this.data = new Array(height * width).fill(0);
    }
 
    generate() {
-      for (let y = 0; y < 200; y++) {
-         for(let x = 0; x < 400; x++) {
-            this.set(x, y, getBiome(x, y));
+      for (let y = 0; y < this.height; y++) {
+         for(let x = 0; x < this.width; x++) {
+            this.set(x, y, getBiome(x, y, this.heightm, this.moisture));
          }
       }     
    }
@@ -80,8 +83,8 @@ class hgMap {
 
 
 
-function getBiome(x, y) {
-   console.log(heightm.get(x, y), moisture.get(x, y))
+function getBiome(x, y, heightm, moisture) {
+   console.log('hi')
    if (heightm.get(x, y) < 0.2 && moisture.get(x, y) > 0.3) {
       if (moisture.get(x,y) > 0.7) return hgMap.COLORS.OCEAN
       return hgMap.COLORS.POND
@@ -109,9 +112,9 @@ function getBiome(x, y) {
    return hgMap.COLORS.WMOUNTAINS
 }
 
-var generator = new NoiseMap.MapGenerator(config={generateSeed: true});
+const generator = new NoiseMap.MapGenerator(config={generateSeed: true});
 
-var heightm = generator.createMap(400, 200, {type: 'simplex', frequency: 1, amplitude: 1, generateSeed: true})
+/*var heightm = generator.createMap(32, 32, {type: 'simplex', frequency: 1, amplitude: 1, generateSeed: true})
 /*var heightmaps = []
 heightmaps.push(generator.createMap(400, 200, {type: 'simplex', frequency: 1, amplitude: 1, generateSeed: true}))
 heightmaps.push(generator.createMap(400, 200, {type: 'simplex', frequency: 0.5, amplitude: 0.5, generateSeed: true}))
@@ -123,14 +126,14 @@ for (let y = 0; y < 200; y++) {
    for(let x = 0; x < 400; x++) {
       height.set(x, y, ((heightmaps[0].get(x, y) * 1) + (heightmaps[1].get(x, y) * 0.5) + (heightmaps[2].get(x, y) * 0.25)) / (1 + 0.5 + 0.25));
    }
-}*/
+}
 
 var canvas = document.getElementById('height-canvas');
 var context = canvas.getContext('2d');
 heightm.stepValues(100);
-heightm.draw(context, 800, 400, NoiseMap.STYLE.GRAY);
+heightm.draw(context, 128, 128, NoiseMap.STYLE.GRAY);
 
-const moisture = generator.createMap(400, 200, {type: 'simplex', frequency: 1, amplitude: 1, generateSeed: true})
+const moisture = generator.createMap(32, 32, {type: 'simplex', frequency: 1, amplitude: 1, generateSeed: true})
 /*var moisturemaps = [];
 
 moisturemaps.push(generator.createMap(400, 200, {type: 'perlin', frequency: 1, amplitude: 1, generateSeed: true}))
@@ -141,11 +144,11 @@ for (let y = 0; y < 200; y++) {
    for(let x = 0; x < 400; x++) {
       moisture.set(x, y, ((moisturemaps[0].get(x, y) * 1) + (moisturemaps[1].get(x, y) * 0.5) + (moisturemaps[2].get(x, y) * 0.25)) / (1 + 0.5 + 0.25));
    }
-}*/
+}
 canvas = document.getElementById('moisture-canvas');
 var context = canvas.getContext('2d');
 moisture.stepValues(100);
-moisture.draw(context, 800, 400, NoiseMap.STYLE.GRAY);
+moisture.draw(context, 128, 128, NoiseMap.STYLE.GRAY);
 
 // equivalent_elevation = 10*e*e + poles + (equator-poles) * sin(PI * (y / height))
 
@@ -156,15 +159,64 @@ const hexToRgb = hex =>
     .map(x => parseInt(x, 16))
 canvas = document.getElementById('map-canvas');
 var context = canvas.getContext('2d');
-var mainmap = new hgMap(400, 200);
+var mainmap = new hgMap(32, 32, heightm, moisture);
 
 mainmap.generate();
 document.getElementById('status').innerHTML = 'DON!!!';
 mainmap.drawMap(context, canvas.clientWidth, canvas.clientHeight);
 
-console.log(hexToRgb('#027ed1'))
+console.log(hexToRgb('#027ed1'))*/
 
 
 function scale(x, oldMin, oldMax, newMin, newMax) {
    return newMin + (newMax - newMin) * (x - oldMin) / (oldMax - oldMin);
 }
+
+const genButton = document.getElementById('gen')
+
+genButton.addEventListener('click', () => {
+   const height = document.getElementById('height')
+   const moist = document.getElementById('moisture')
+   const heightf = document.getElementById('heightfrequency')
+   const moistf = document.getElementById('moistfrequency')
+   const size = document.getElementById('size')
+
+   const heightm = generator.createMap(size.value, size.value, {type: 'simplex', frequency: heightf.value, amplitude: 1, generateSeed: true})
+   console.log(height)
+   var canvas = document.getElementById('height-canvas');
+   canvas.height = size.value * 4
+   canvas.width = size.value * 4
+   for (let y = 0; y < heightm.height; y++) {
+      for (let x = 0; x < heightm.width; x++) {
+         heightm.set(x, y, Math.pow(heightm.get(x, y), height.value))
+      }   
+   }
+   var context = canvas.getContext('2d');
+   heightm.stepValues(100);
+   heightm.draw(context, size.value * 4, size.value * 4, NoiseMap.STYLE.GRAY);
+
+   const moisture = generator.createMap(size.value, size.value, {type: 'simplex', frequency: moistf.value, amplitude: 1, generateSeed: true})
+   canvas = document.getElementById('moisture-canvas');
+   canvas.height = size.value * 4
+   canvas.width = size.value * 4
+   for (let y = 0; y < moisture.height; y++) {
+      for (let x = 0; x < moisture.width; x++) {
+         moisture.set(x, y, Math.pow(moisture.get(x, y), moist.value))
+      }   
+   }
+   context = canvas.getContext('2d');
+   moisture.stepValues(100);
+   moisture.draw(context, size.value * 4, size.value * 4, NoiseMap.STYLE.GRAY);
+   
+   canvas = document.getElementById('map-canvas');
+   canvas.height = size.value * 4
+   canvas.width = size.value * 4
+   context = canvas.getContext('2d');
+   const mainmap = new hgMap(size.value, size.value, heightm, moisture);
+
+   console.log(canvas, context, mainmap);
+
+   mainmap.generate();
+   document.getElementById('status').innerHTML = 'DON!!!';
+   mainmap.drawMap(context, size.value * 4, size.value * 4);
+})
