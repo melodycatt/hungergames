@@ -11,7 +11,8 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
-        <script src="scripts/js/testy.js" defer></script>
+        <script type="module" src="scripts/js/testy.js" defer></script>
+        <script type="text/javascript" src="https://unpkg.com/noise-map@latest"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -19,5 +20,6 @@
         <![endif]-->
         <input type="text" name="yo" id="testInput">
         <button onclick="test()">test</button>
+        <canvas id="map-canvas" width="800" height="400"></canvas>
     </body>
 </html>

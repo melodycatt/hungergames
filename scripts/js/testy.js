@@ -1,5 +1,7 @@
-function useRegex(input) {
-   return input.match(/(?<=\[)[^\[\]]+?(?=\])/g);
-}
+import { MapGenerator, STYLE } from 'noise-map';
 
-console.log(useRegex('[1] pee [aaaaa]'))
+var generator = new MapGenerator();
+var heightmap = generator.createMap(400, 200, {type: 'perlin'});
+
+var context = document.getElementById('map-canvas').getContext('2d');
+heightmap.draw(context, 800, 400, STYLE.GRAY);

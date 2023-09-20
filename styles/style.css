@@ -121,6 +121,8 @@ section.inactive {
     display: inline-block;
     margin: 50px;
     padding: 15px;
+    color:black;
+    
 }
 
 .effectExtra {
