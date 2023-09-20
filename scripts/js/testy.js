@@ -1,7 +1,7 @@
-import { MapGenerator, STYLE } from 'noise-map';
+import * as NoiseMap from './map.js';
 
-var generator = new MapGenerator();
+var generator = new NoiseMap.MapGenerator();
 var heightmap = generator.createMap(400, 200, {type: 'perlin'});
 
 var context = document.getElementById('map-canvas').getContext('2d');
-heightmap.draw(context, 800, 400, STYLE.GRAY);
+heightmap.draw(context, 800, 400, NoiseMap.STYLE.GRAY);
